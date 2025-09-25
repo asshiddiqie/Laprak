@@ -60,7 +60,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal1.png)
+> ![Screenshot soal 1](output/screenshot_soal1.png)
 > %% Untuk mencantumkan screenshot, tidak boleh ada spasi di urlnya `()`, penamaan file bebas asal gak sara dan mudah dipahami aja,, dan jangan lupa hapus komen ini yah%%
 
 Penjelasan ttg kode kalian disini
