@@ -9,7 +9,7 @@ yang panjang dikit
 
 ### soal 1
 
-saya membuat sebuah program kalkulator sederhana dengan menggunakan swith case
+blablablabalba
 
 ## Unguided
 
@@ -22,39 +22,25 @@ saya membuat sebuah program kalkulator sederhana dengan menggunakan swith case
 using namespace std;
 
 int main() {
-    float angka1, angka2;
-    char operasi;
+    float bilangan1, bilangan2;
+    
 
-    cout << "Masukkan angka pertama: ";
-    cin >> angka1;
-
-    cout << "Masukkan operator (+, -, *, /): ";
-    cin >> operasi;
-
-    cout << "Masukkan angka kedua: ";
-    cin >> angka2;
-
-    switch(operasi) {
-        case '+':
-            cout << "Hasil: " << angka1 + angka2 << endl;
-            break;
-        case '-':
-            cout << "Hasil: " << angka1 - angka2 << endl;
-            break;
-        case '*':
-            cout << "Hasil: " << angka1 * angka2 << endl;
-            break;
-        case '/':
-            if(angka2 != 0) {
-                cout << "Hasil: " << angka1 / angka2 << endl;
-            } else {
-                cout << "Error: Pembagian dengan nol!" << endl;
-            }
-            break;
-        default:
-            cout << "Operator tidak valid!" << endl;
+    cout << "Masukkan bilangan pertama: ";
+    cin >> bilangan1;
+    cout << "Masukkan bilangan kedua: ";
+    cin >> bilangan2;
+    
+    cout << "\nHasil Operasi:" << endl;
+    cout << "Penjumlahan: " << bilangan1 << " + " << bilangan2 << " = " << bilangan1 + bilangan2 << endl;
+    cout << "Pengurangan: " << bilangan1 << " - " << bilangan2 << " = " << bilangan1 - bilangan2 << endl;
+    cout << "Perkalian: " << bilangan1 << " * " << bilangan2 << " = " << bilangan1 * bilangan2 << endl;
+    
+    if (bilangan2 != 0) {
+        cout << "Pembagian: " << bilangan1 << " / " << bilangan2 << " = " << bilangan1 / bilangan2 << endl;
+    } else {
+        cout << "Pembagian: Tidak dapat membagi dengan nol" << endl;
     }
-
+    
     return 0;
 }
 ```
