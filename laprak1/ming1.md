@@ -46,7 +46,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot soal 1](https://github.com/asshiddiqie/modul1/blob/main/laprak1/soal1.png)
+> ![Screenshot soal 1](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal1.png)
 > %% Untuk mencantumkan screenshot, tidak boleh ada spasi di urlnya `()`, penamaan file bebas asal gak sara dan mudah dipahami aja,, dan jangan lupa hapus komen ini yah%%
 
 Penjelasan ttg kode kalian disini
