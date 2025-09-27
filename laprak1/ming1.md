@@ -15,7 +15,7 @@ blablabla
 
 ### Soal 1
 
-1. Buatlah program yang menerima input-an dua buah bilangan bertipe float, kemudian memberikan output-an hasil penjumlahan, pengurangan, perkalian, dan pembagian dari dua bilangan tersebut.
+Buatlah program yang menerima input-an dua buah bilangan bertipe float, kemudian memberikan output-an hasil penjumlahan, pengurangan, perkalian, dan pembagian dari dua bilangan tersebut.
 
 ```go
 #include <iostream>
@@ -52,7 +52,7 @@ Program di atas adalah kalkulator sederhana dalam C++ yang menerima dua input bi
 
 ### Soal 2
 
-soal nomor 2A
+soal nomor 2
 
 ```go
 package main
@@ -67,15 +67,44 @@ func main() {
 
 penjelasan kode
 
-Kalau adalanjutan di lanjut disini aja
+### Soal 3
 
-soal nomor 2B
+Buatlah program yang dapat memberikan input dan output sbb.
 
 ```go
-package main
+#include <iostream>
+using namespace std;
 
-func main() {
-	fmt.Println("kode untuk soal nomor 2B")
+int main() {
+    int n;
+    
+    cout << "input: ";
+    cin >> n;
+    
+    cout << "output:" << endl;
+    
+    for (int i = n; i >= 0; i--) {
+        for (int s = 0; s < (n - i) * 2; s++) {
+            cout << " ";
+        }
+        
+        for (int j = i; j >= 1; j--) {
+            cout << j << " ";
+        }
+        
+        cout << "*";
+        
+        if (i > 0) {
+            cout << " ";
+            for (int j = 1; j <= i; j++) {
+                cout << j << " ";
+            }
+        }
+        
+        cout << endl;
+    }
+    
+    return 0;
 }
 ```
 
