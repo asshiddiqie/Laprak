@@ -109,7 +109,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal2B.png)
+> ![Screenshot soal 3](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal2.jpg)
 
 penjelasan bedanya sesuai soal
 
