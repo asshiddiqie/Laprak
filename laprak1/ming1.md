@@ -9,7 +9,7 @@ yang panjang dikit
 
 ### soal 1
 
-blablablabalba
+blablabla
 
 ## Unguided
 
@@ -47,9 +47,8 @@ int main() {
 
 > Output
 > ![Screenshot soal 1](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal1.png)
-> %% Untuk mencantumkan screenshot, tidak boleh ada spasi di urlnya `()`, penamaan file bebas asal gak sara dan mudah dipahami aja,, dan jangan lupa hapus komen ini yah%%
 
-Penjelasan ttg kode kalian disini
+Program di atas adalah kalkulator sederhana dalam C++ yang menerima dua input bilangan float dari pengguna dan menampilkan hasil empat operasi aritmetika dasar (penjumlahan, pengurangan, perkalian, dan pembagian) dengan implementasi pengecekan kondisi untuk mencegah pembagian oleh nol.
 
 ### Soal 2
 
