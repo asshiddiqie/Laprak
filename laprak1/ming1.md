@@ -55,10 +55,69 @@ Program di atas adalah kalkulator sederhana dalam C++ yang menerima dua input bi
 soal nomor 2
 
 ```go
-package main
+#include <iostream>
+using namespace std;
 
-func main() {
-	fmt.Println("kode untuk soal nomor 2A")
+int main() {
+    int angka;
+    cout << "Masukkan angka (0-100): ";
+    cin >> angka;
+    
+    cout << angka << " : ";
+    
+    int p = angka / 10;  // puluhan
+    int s = angka % 10;  // satuan
+    
+    if (angka == 0) cout << "nol";
+    else if (angka == 100) cout << "seratus";
+    else if (angka == 10) cout << "sepuluh";
+    else if (angka == 11) cout << "sebelas";
+    else if (angka == 12) cout << "dua belas";
+    else if (angka == 13) cout << "tiga belas";
+    else if (angka == 14) cout << "empat belas";
+    else if (angka == 15) cout << "lima belas";
+    else if (angka == 16) cout << "enam belas";
+    else if (angka == 17) cout << "tujuh belas";
+    else if (angka == 18) cout << "delapan belas";
+    else if (angka == 19) cout << "sembilan belas";
+    else {
+        // Puluhan
+        if (p == 2) cout << "dua puluh";
+        else if (p == 3) cout << "tiga puluh";
+        else if (p == 4) cout << "empat puluh";
+        else if (p == 5) cout << "lima puluh";
+        else if (p == 6) cout << "enam puluh";
+        else if (p == 7) cout << "tujuh puluh";
+        else if (p == 8) cout << "delapan puluh";
+        else if (p == 9) cout << "sembilan puluh";
+        
+        // Satuan (kalau ada)
+        if (s == 1) cout << " satu";
+        else if (s == 2) cout << " dua";
+        else if (s == 3) cout << " tiga";
+        else if (s == 4) cout << " empat";
+        else if (s == 5) cout << " lima";
+        else if (s == 6) cout << " enam";
+        else if (s == 7) cout << " tujuh";
+        else if (s == 8) cout << " delapan";
+        else if (s == 9) cout << " sembilan";
+        
+        // Kalau cuma satuan (1-9)
+        if (p == 0) {
+            if (s == 1) cout << "satu";
+            else if (s == 2) cout << "dua";
+            else if (s == 3) cout << "tiga";
+            else if (s == 4) cout << "empat";
+            else if (s == 5) cout << "lima";
+            else if (s == 6) cout << "enam";
+            else if (s == 7) cout << "tujuh";
+            else if (s == 8) cout << "delapan";
+            else if (s == 9) cout << "sembilan";
+        }
+    }
+    
+    cout << endl;
+    return 0;
 }
 ```
 
