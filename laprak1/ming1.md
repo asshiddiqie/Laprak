@@ -52,7 +52,7 @@ Program di atas adalah kalkulator sederhana dalam C++ yang menerima dua input bi
 
 ### Soal 2
 
-soal nomor 2
+Buatlah sebuah program yang menerima masukan angka dan mengeluarkan output nilai angka tersebut dalam bentuk tulisan. Angka yang akan di-input-kan user adalah bilangan bulat positif mulai dari 0 s.d 100
 
 ```go
 #include <iostream>
@@ -122,7 +122,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal2A.png)
+> ![Screenshot bagian x](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal2.jpg)
 
 penjelasan kode
 
