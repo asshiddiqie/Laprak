@@ -164,9 +164,19 @@ int main() {
 > Output
 > ![Screenshot soal 3](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal3.jpg)
 
-penjelasan bedanya sesuai soal
+Program ini membuat pola segitiga simetris dengan angka dan bintang. User memasukkan angka n, kemudian program menggambar segitiga setinggi n+1 baris.
+Cara kerja: Program menggunakan loop bertingkat untuk membuat setiap baris. Setiap baris terdiri dari 4 bagian:
+
+Spasi untuk indentasi (membentuk segitiga)
+Angka kiri yang menurun (dari i ke 1)
+Bintang di tengah sebagai sumbu
+Angka kanan yang menaik (dari 1 ke i)
 
 ## Referensi
 
-1. https://www.w3schools.com/cpp/cpp_switch.asp
+1. https://www.w3schools.com/cpp/cpp_for_loop.asp
+2. https://www.w3schools.com/cpp/cpp_conditions.asp
+3. https://www.w3schools.com/cpp/cpp_conditions_elseif.asp
+4. https://www.w3schools.com/cpp/cpp_conditions_else.asp
+5. https://www.w3schools.com/cpp/cpp_variables_multiple.asp
 
