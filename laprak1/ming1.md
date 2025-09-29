@@ -3,7 +3,7 @@
 
 ## Dasar Teori
 
-yang panjang dikit
+C++ adalah bahasa pemrograman yang memiliki struktur dasar dimulai dari fungsi main(), menggunakan tipe data seperti int, float, char, dan string, operator untuk operasi matematika dan logika, struktur kontrol if-else untuk percabangan, loop for/while untuk perulangan, array untuk menyimpan banyak data, serta cin dan cout untuk input dan output, di mana setiap perintah diakhiri dengan semicolon (;) dan program harus dikompilasi terlebih dahulu sebelum dijalankan.
 
 ## Unguided
 
@@ -118,7 +118,7 @@ int main() {
 > Output
 > ![Screenshot bagian x](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal2.jpg)
 
-penjelasan kode
+Program ini mengkonversi angka 0-100 menjadi kata dalam bahasa Indonesia dengan cara memisahkan digit puluhan dan satuan menggunakan operasi pembagian dan modulus, kemudian menggunakan struktur if-else bertingkat untuk menangani tiga kategori: kasus khusus (0, 10-19, 100) yang memiliki nama unik, angka puluhan (20-99) yang menggabungkan kata puluhan dan satuan, serta angka satuan (1-9) yang langsung mencetak kata satuannya.
 
 ### Soal 3
 
@@ -167,10 +167,13 @@ int main() {
 Program ini membuat pola segitiga simetris dengan angka dan bintang. User memasukkan angka n, kemudian program menggambar segitiga setinggi n+1 baris.
 Cara kerja: Program menggunakan loop bertingkat untuk membuat setiap baris. Setiap baris terdiri dari 4 bagian:
 
-Spasi untuk indentasi (membentuk segitiga)
-Angka kiri yang menurun (dari i ke 1)
-Bintang di tengah sebagai sumbu
-Angka kanan yang menaik (dari 1 ke i)
+-Spasi untuk indentasi (membentuk segitiga)
+
+-Angka kiri yang menurun (dari i ke 1)
+
+-Bintang di tengah sebagai sumbu
+
+-Angka kanan yang menaik (dari 1 ke i)
 
 ## Referensi
 
@@ -179,4 +182,5 @@ Angka kanan yang menaik (dari 1 ke i)
 3. https://www.w3schools.com/cpp/cpp_conditions_elseif.asp
 4. https://www.w3schools.com/cpp/cpp_conditions_else.asp
 5. https://www.w3schools.com/cpp/cpp_variables_multiple.asp
+6. https://www.w3schools.com/cpp/cpp_arrays.asp
 
