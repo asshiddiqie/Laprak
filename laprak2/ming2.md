@@ -15,7 +15,7 @@ aku mengerjakan perulangan
 
 ### Soal 1
 
-1. Buatlah sebuah program untuk melakukan transpose pada sebuah matriks persegi berukuran 3x3. Operasi transpose adalah mengubah baris menjadi kolom dan sebaliknya. Inisialisasi matriks awal di dalam kode, kemudian buat logika untuk melakukan transpose dan simpan hasilnya ke dalam matriks baru. Terakhir, tampilkan matriks awal dan matriks hasil transpose.
+Buatlah sebuah program untuk melakukan transpose pada sebuah matriks persegi berukuran 3x3. Operasi transpose adalah mengubah baris menjadi kolom dan sebaliknya. Inisialisasi matriks awal di dalam kode, kemudian buat logika untuk melakukan transpose dan simpan hasilnya ke dalam matriks baru. Terakhir, tampilkan matriks awal dan matriks hasil transpose.
 
 Contoh Output:
 
@@ -88,13 +88,37 @@ Penjelasan ttg kode kalian disini
 
 ### Soal 2
 
-soal nomor 2A
+Buatlah program yang menunjukkan penggunaan call by reference. Buat sebuah prosedur bernama kuadratkan yang menerima satu parameter integer secara referensi (&). Prosedur ini akan mengubah nilai asli variabel yang dilewatkan dengan nilai kuadratnya. Tampilkan nilai variabel di main() sebelum dan sesudah memanggil prosedur untuk membuktikan perubahannya. 
+
+Contoh Output:
+
+Nilai awal: 5
+Nilai setelah dikuadratkan: 25
 
 ```go
-package main
+#include <iostream>
+using namespace std;
 
-func main() {
-	fmt.Println("kode untuk soal nomor 2A")
+//parameter
+void kuadrat(int &angka) {
+    angka = angka * angka;
+}
+
+int main() {
+    int nilai;
+    
+    cout << "Masukkan sebuah bilangan: ";
+    cin >> nilai;
+    
+    // Tampilkan nilai awal
+    cout << "Nilai awal: " << nilai << endl;
+    
+    // Panggil prosedur kuadrat
+    kuadrat(nilai);
+    
+    cout << "Nilai setelah dikuadratkan: " << nilai << endl;
+    
+    return 0;
 }
 ```
 
