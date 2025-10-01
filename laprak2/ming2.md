@@ -131,5 +131,11 @@ Kalau adalanjutan di lanjut disini aja
 
 ## Referensi
 
-1. https://en.wikipedia.org/wiki/Data_structure (diakses blablabla)
+1. https://www.w3schools.com/cpp/cpp_for_loop_nested.asp
+2. https://www.w3schools.com/cpp/cpp_arrays.asp
+3. https://www.w3schools.com/cpp/cpp_arrays_loop.asp
+4. https://www.w3schools.com/cpp/cpp_references.asp
+5. https://www.w3schools.com/cpp/cpp_pointers.asp
+6. https://www.w3schools.com/cpp/cpp_function_param.asp
+7. https://www.w3schools.com/cpp/cpp_function_array.asp
 
