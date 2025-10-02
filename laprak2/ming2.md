@@ -123,7 +123,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal2A.png)
+> ![Screenshot bagian x](output/modul2no2.jpg)
 
 Penjelasan Kode:
 
