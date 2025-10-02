@@ -125,9 +125,17 @@ int main() {
 > Output
 > ![Screenshot bagian x](output/screenshot_soal2A.png)
 
-penjelasan kode
+Penjelasan Kode:
 
-Kalau adalanjutan di lanjut disini aja
+1. void = Prosedur ini tidak mengembalikan nilai (return). Dia hanya mengubah nilai parameter yang dikirim.
+2. int &angka = Parameter dengan tanda & (ampersand). Ini adalah KUNCI dari call by reference!
+    & membuat angka menjadi alias (nama lain) untuk variabel asli
+    Bukan salinan, tapi referensi langsung ke variabel asli
+3. angka = angka * angka = Mengkuadratkan nilai
+    Jika angka = 5, maka 5 × 5 = 25
+    Karena angka adalah reference, perubahan ini langsung mempengaruhi variabel asli di main()
+
+Program ini berfungsi untuk mengkuadratkan bilangan yang dimasukkan pengguna menggunakan parameter referensi sehingga nilai variabel langsung berubah.
 
 ## Referensi
 
