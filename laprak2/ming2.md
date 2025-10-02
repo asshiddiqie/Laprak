@@ -1,5 +1,5 @@
-# <h1 align="center">Laporan Praktikum Modul X <br> Nama Modul</h1>
-<p align="center">NAMA - NIM</p>
+# <h1 align="center">Laporan Praktikum Modul 2 <br> PENGENALAN BAHASA C++ (BAGIAN KEDUA)</h1>
+<p align="center">ASSHIDDIQIE SYABANA PUTRA - 103112400129                                            </p>
 
 ## Dasar Teori
 
@@ -124,9 +124,7 @@ int main() {
 
 > Output
 > ![Screenshot bagian x](output/screenshot_soal1.png)
-> %% Untuk mencantumkan screenshot, tidak boleh ada spasi di urlnya `()`, penamaan file bebas asal gak sara dan mudah dipahami aja,, dan jangan lupa hapus komen ini yah%%
-
-Penjelasan ttg kode kalian disini
+Program ini membuat transpose dari matriks 3x3. Transpose matriks adalah operasi menukar baris menjadi kolom (elemen baris ke-i menjadi kolom ke-i).
 
 ### Soal 2
 
