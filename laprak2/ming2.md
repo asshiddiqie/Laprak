@@ -3,7 +3,7 @@
 
 ## Dasar Teori
 
-yang panjang dikit
+Teori dasar C++ meliputi array untuk menyimpan kumpulan data, pointer yang menyimpan alamat memori variabel lain, serta fungsi dan prosedur untuk memodularisasi program. Dalam passing parameter, terdapat tiga cara: call by value (nilai disalin), call by pointer (melewatkan alamat memori via pointer), dan call by reference (parameter sebagai alias variabel asli), dimana call by pointer dan reference memungkinkan modifikasi variabel asli.
 
 ## Guided
 
