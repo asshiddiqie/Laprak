@@ -7,6 +7,148 @@ Teori dasar C++ meliputi array untuk menyimpan kumpulan data, pointer yang menyi
 
 ## Guided
 
+### array
+```go
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int nilai[5] = {1, 2, 3, 4, 5};
+
+    for ( int i = 0;  i < 5; i++)
+    {
+       
+        cout << "elemen ke-" << i << "=" << nilai[i] << endl;
+    }
+    return 0;
+} 
+```
+
+### array 2
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char pesan_array[] = "Nasi Padang";
+    char *pesan_pointer = "Ayam Bakar 23";
+
+    cout << "String Array : " << pesan_array << endl;
+    cout << "String Pointer : " << pesan_pointer << endl;
+
+    // Mengubah karakter dalam array diperbolehkan
+    pesan_array[0] = 'h';
+    cout << "String Array setelah diubah: " << pesan_array << endl;
+
+    // Pointer dapat diubah untuk menunjuk ke string lain
+    pesan_pointer = "Sariaman";
+    cout << "String Pointer setelah menunjuk ke string lain: " << pesan_pointer << endl;
+
+    return 0;
+}
+
+```
+
+### matriks
+```go
+#include <iostream>
+using namespace std;
+
+int main(){
+    int matriks[3][3] ={
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}};
+
+    for (int i = 0; i < 3; i++)
+        {
+        for (int j = 0; j < 3; j++)
+    {
+            cout << matriks[i][j]<< " ";
+    }
+    cout << endl;
+
+    }
+    return 0;
+}
+```
+
+### pointer
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int umur = 25;
+    int *p_umur;
+
+    p_umur = &umur;
+
+    cout << "Nilai 'umur': " << umur << endl;
+    cout << "Alamat memori 'umur': " << &umur << endl;
+    cout << "Nilai 'p_umur' (alamat): " << p_umur << endl;
+    cout << "Nilai yang diakses 'p_umur': " << p_umur << endl;
+    cout << "Alamat memori dari pointer 'p_umur' itu sendiri: " << p_umur << endl;
+    return 0;
+}
+```
+
+### array_pointer
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int data[5] = {10, 20, 30, 40, 50};
+    int *p_data = data;
+
+    cout << "Mengakses elemen array cara normal:" << endl;
+
+    for (int i = 0; i < 5; ++i)
+    {
+        cout << "Nilai elemen ke-" << i << " : " << data[i] << endl;
+    }
+
+    cout << "Mengakses elemen array menggunakan pointer:" << endl;
+
+    for (int i = 0; i < 5; ++i)
+    {
+        cout << "Nilai elemen ke-" << i << " : " << *(p_data + i) << endl;
+    }
+
+    return 0;
+}
+```
+
+### string_pointer
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char pesan_array[] = "Nasi Padang";
+    char *pesan_pointer = "Ayam Bakar 23";
+
+    cout << "String Array: " << pesan_array << endl;
+    cout << "String Pointer: " << pesan_pointer << endl;
+
+    // Mengubah karakter dalam array diperbolehkan
+    pesan_array[0] = 'h';
+    cout << "String Array setelah diubah: " << pesan_array << endl;
+
+    // Pointer dapat diubah untuk menunjuk ke string lain
+    pesan_pointer = "Sariman";
+    cout << "String Pointer setelah menunjuk ke string lain: " << pesan_pointer << endl;
+
+    return 0;
+}
+```
+
 ### call by pointer
 
 ```go
@@ -124,6 +266,7 @@ int main() {
 
 > Output
 > ![Screenshot bagian x](output/modul2no1.jpg)
+> 
 Program ini membuat transpose dari matriks 3x3. Transpose matriks adalah operasi menukar baris menjadi kolom (elemen baris ke-i menjadi kolom ke-i).
 
 ### Soal 2
