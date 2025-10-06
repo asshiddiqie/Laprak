@@ -123,7 +123,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal1.png)
+> ![Screenshot bagian x](output/modul2no1.jpg)
 Program ini membuat transpose dari matriks 3x3. Transpose matriks adalah operasi menukar baris menjadi kolom (elemen baris ke-i menjadi kolom ke-i).
 
 ### Soal 2
