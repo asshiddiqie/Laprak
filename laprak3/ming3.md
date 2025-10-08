@@ -219,30 +219,84 @@ int main()
 
 ### Soal 1
 
-Buatlah program yang menerima input-an dua buah bilangan bertipe float, kemudian memberikan output-an hasil penjumlahan, pengurangan, perkalian, dan pembagian dari dua bilangan tersebut.
+Buat program yang dapat menyimpan data mahasiswa (max. 10) ke dalam sebuah array dengan field nama, nim, uts, uas, tugas, dan nilai akhir. Nilai akhir diperoleh dari FUNGSI dengan rumus 0.3*uts+0.4*uas+0.3*tugas.
 
 ```go
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main() {
-    float bilangan1, bilangan2;
-    
+struct Mahasiswa {
+    string nama;
+    string nim;
+    float uts;
+    float uas;
+    float tugas;
+    float nilaiAkhir;
+};
 
-    cout << "Masukkan bilangan pertama: ";
-    cin >> bilangan1;
-    cout << "Masukkan bilangan kedua: ";
-    cin >> bilangan2;
+float hitungNilai(float uts, float uas, float tugas) {
+    return (0.3 * uts) + (0.4 * uas) + (0.3 * tugas);
+}
+
+int main() {
+    Mahasiswa data[10];
+    int jumlah = 0;
+    int pilihan;
     
-    cout << "\nHasil Operasi:" << endl;
-    cout << "Penjumlahan: " << bilangan1 << " + " << bilangan2 << " = " << bilangan1 + bilangan2 << endl;
-    cout << "Pengurangan: " << bilangan1 << " - " << bilangan2 << " = " << bilangan1 - bilangan2 << endl;
-    cout << "Perkalian: " << bilangan1 << " * " << bilangan2 << " = " << bilangan1 * bilangan2 << endl;
-    
-    if (bilangan2 != 0) {
-        cout << "Pembagian: " << bilangan1 << " / " << bilangan2 << " = " << bilangan1 / bilangan2 << endl;
-    } else {
-        cout << "Pembagian: Tidak dapat membagi dengan nol" << endl;
+    while(true) {
+        cout << "\nMenu:" << endl;
+        cout << "1. Tambah Data" << endl;
+        cout << "2. Lihat Data" << endl;
+        cout << "3. Keluar" << endl;
+        cout << "Pilih: ";
+        cin >> pilihan;
+        
+        if(pilihan == 1) {
+            if(jumlah >= 10) {
+                cout << "Data penuh!" << endl;
+                continue;
+            }
+            
+            cout << "Nama: ";
+            cin.ignore();
+            getline(cin, data[jumlah].nama);
+            
+            cout << "NIM: ";
+            getline(cin, data[jumlah].nim);
+            
+            cout << "UTS: ";
+            cin >> data[jumlah].uts;
+            
+            cout << "UAS: ";
+            cin >> data[jumlah].uas;
+            
+            cout << "Tugas: ";
+            cin >> data[jumlah].tugas;
+            
+            data[jumlah].nilaiAkhir = hitungNilai(data[jumlah].uts, data[jumlah].uas, data[jumlah].tugas);
+            
+            jumlah++;
+            cout << "Data ditambah!" << endl;
+            
+        } else if(pilihan == 2) {
+            if(jumlah == 0) {
+                cout << "Belum ada data!" << endl;
+                continue;
+            }
+            
+            cout << "\nData Mahasiswa:" << endl;
+            for(int i = 0; i < jumlah; i++) {
+                cout << i+1 << ". " << data[i].nama << " - " << data[i].nim << endl;
+                cout << "   Nilai Akhir: " << data[i].nilaiAkhir << endl;
+            }
+            
+        } else if(pilihan == 3) {
+            cout << "Program selesai" << endl;
+            break;
+        } else {
+            cout << "Pilihan salah!" << endl;
+        }
     }
     
     return 0;
@@ -332,41 +386,100 @@ Program ini mengkonversi angka 0-100 menjadi kata dalam bahasa Indonesia dengan 
 
 ### Soal 3
 
-Buatlah program yang dapat memberikan input dan output sbb.
+Buatlah program dengan ketentuan :
+- 2 buah array 2D integer berukuran 3x3 dan 2 buah pointer integer
+- fungsi/prosedur yang menampilkan isi sebuah array integer 2D
+- fungsi/prosedur yang akan menukarkan isi dari 2 array integer 2D pada posisi tertentu
 
 ```go
 #include <iostream>
 using namespace std;
 
-int main() {
-    int n;
-    
-    cout << "input: ";
-    cin >> n;
-    
-    cout << "output:" << endl;
-    
-    for (int i = n; i >= 0; i--) {
-        for (int s = 0; s < (n - i) * 2; s++) {
-            cout << " ";
+// Fungsi untuk menampilkan isi array 2D
+void tampilkanArray(int arr[3][3], string namaArray) {
+    cout << "Array " << namaArray << ":" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout << "| ";
+        for(int j = 0; j < 3; j++) {
+            cout << arr[i][j] << " ";
         }
-        
-        for (int j = i; j >= 1; j--) {
-            cout << j << " ";
-        }
-        
-        cout << "*";
-        
-        if (i > 0) {
-            cout << " ";
-            for (int j = 1; j <= i; j++) {
-                cout << j << " ";
-            }
-        }
-        
-        cout << endl;
+        cout << "|" << endl;
     }
+    cout << endl;
+}
+
+// Fungsi untuk menukar elemen pada posisi tertentu menggunakan pointer
+void tukarPosisi(int arr1[3][3], int arr2[3][3], int baris, int kolom) {
+    int *ptr1 = &arr1[baris][kolom];
+    int *ptr2 = &arr2[baris][kolom];
     
+    cout << "Sebelum tukar: Array1[" << baris << "][" << kolom << "] = " << *ptr1;
+    cout << ", Array2[" << baris << "][" << kolom << "] = " << *ptr2 << endl;
+    
+    // Tukar nilai menggunakan pointer
+    int temp = *ptr1;
+    *ptr1 = *ptr2;
+    *ptr2 = temp;
+    
+    cout << "Setelah tukar: Array1[" << baris << "][" << kolom << "] = " << *ptr1;
+    cout << ", Array2[" << baris << "][" << kolom << "] = " << *ptr2 << endl;
+}
+
+void menu() {
+    // Array 2D 3x3
+    int array1[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int array2[3][3] = {{10, 20, 30}, {40, 50, 60}, {70, 80, 90}};
+    
+    // Pointer integer
+    int *ptr1, *ptr2;
+    
+    int pilihan;
+    
+    do {
+        cout << "\n=== MENU PROGRAM ARRAY 2D ===" << endl;
+        cout << "1. Tampilkan Array" << endl;
+        cout << "2. Tukar Posisi Tertentu" << endl;
+        cout << "3. Keluar" << endl;
+        cout << "Pilihan: ";
+        cin >> pilihan;
+        
+        switch(pilihan) {
+            case 1:
+                tampilkanArray(array1, "Pertama");
+                tampilkanArray(array2, "Kedua");
+                break;
+                
+            case 2: {
+                int baris, kolom;
+                cout << "Masukkan posisi untuk ditukar:" << endl;
+                cout << "Baris (0-2): ";
+                cin >> baris;
+                cout << "Kolom (0-2): ";
+                cin >> kolom;
+                
+                if(baris >= 0 && baris < 3 && kolom >= 0 && kolom < 3) {
+                    tukarPosisi(array1, array2, baris, kolom);
+                    cout << "\nHasil setelah penukaran:" << endl;
+                    tampilkanArray(array1, "Pertama");
+                    tampilkanArray(array2, "Kedua");
+                } else {
+                    cout << "Posisi tidak valid!" << endl;
+                }
+                break;
+            }
+                
+            case 3:
+                cout << "Program selesai." << endl;
+                break;
+                
+            default:
+                cout << "Pilihan tidak valid!" << endl;
+        }
+    } while(pilihan != 3);
+}
+
+int main() {
+    menu();
     return 0;
 }
 ```
