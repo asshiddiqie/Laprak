@@ -4,8 +4,7 @@
 
 ## Dasar Teori
 
-C++ adalah bahasa pemrograman yang memiliki struktur dasar dimulai dari fungsi main(), menggunakan tipe data seperti int, float, char, dan string, operator untuk operasi matematika dan logika, struktur kontrol if-else untuk percabangan, loop for/while untuk perulangan, array untuk menyimpan banyak data, serta cin dan cout untuk input dan output, di mana setiap perintah diakhiri dengan semicolon (;) dan program harus dikompilasi terlebih dahulu sebelum dijalankan.
-
+Abstract Data Type (ADT) adalah sebuah tipe data yang didefinisikan beserta dengan sekumpulan operasi primitifnya, di mana detail implementasinya disembunyikan dari pengguna. Konsep ini diwujudkan dengan memisahkan spesifikasi tipe dan fungsi ke dalam file header (.h) dan realisasi kodenya ke dalam file implementasi (.cpp), sehingga meningkatkan modularitas, abstraksi, dan kemudahan maintenance dalam pemrograman.
 ## Guided
 
 ### Soal 1
