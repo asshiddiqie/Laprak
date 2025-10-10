@@ -1,1 +1,315 @@
+# <h1 align="center">Laporan Praktikum Modul 4 <br> PENGENALAN BAHASA C++ (BAGIAN KEDUA)</h1>
+<p align="center">ASSHIDDIQIE SYABANA PUTRA - 103112400129                                            </p>
+
+## Dasar Teori
+
+Teori dasar C++ meliputi array untuk menyimpan kumpulan data, pointer yang menyimpan alamat memori variabel lain, serta fungsi dan prosedur untuk memodularisasi program. Dalam passing parameter, terdapat tiga cara: call by value (nilai disalin), call by pointer (melewatkan alamat memori via pointer), dan call by reference (parameter sebagai alias variabel asli), dimana call by pointer dan reference memungkinkan modifikasi variabel asli.
+
+## Guided
+
+### array
+```go
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int nilai[5] = {1, 2, 3, 4, 5};
+
+    for ( int i = 0;  i < 5; i++)
+    {
+       
+        cout << "elemen ke-" << i << "=" << nilai[i] << endl;
+    }
+    return 0;
+} 
+```
+
+### array 2
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char pesan_array[] = "Nasi Padang";
+    char *pesan_pointer = "Ayam Bakar 23";
+
+    cout << "String Array : " << pesan_array << endl;
+    cout << "String Pointer : " << pesan_pointer << endl;
+
+    // Mengubah karakter dalam array diperbolehkan
+    pesan_array[0] = 'h';
+    cout << "String Array setelah diubah: " << pesan_array << endl;
+
+    // Pointer dapat diubah untuk menunjuk ke string lain
+    pesan_pointer = "Sariaman";
+    cout << "String Pointer setelah menunjuk ke string lain: " << pesan_pointer << endl;
+
+    return 0;
+}
+
+```
+
+### matriks
+```go
+#include <iostream>
+using namespace std;
+
+int main(){
+    int matriks[3][3] ={
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}};
+
+    for (int i = 0; i < 3; i++)
+        {
+        for (int j = 0; j < 3; j++)
+    {
+            cout << matriks[i][j]<< " ";
+    }
+    cout << endl;
+
+    }
+    return 0;
+}
+```
+
+### pointer
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int umur = 25;
+    int *p_umur;
+
+    p_umur = &umur;
+
+    cout << "Nilai 'umur': " << umur << endl;
+    cout << "Alamat memori 'umur': " << &umur << endl;
+    cout << "Nilai 'p_umur' (alamat): " << p_umur << endl;
+    cout << "Nilai yang diakses 'p_umur': " << p_umur << endl;
+    cout << "Alamat memori dari pointer 'p_umur' itu sendiri: " << p_umur << endl;
+    return 0;
+}
+```
+
+### array_pointer
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int data[5] = {10, 20, 30, 40, 50};
+    int *p_data = data;
+
+    cout << "Mengakses elemen array cara normal:" << endl;
+
+    for (int i = 0; i < 5; ++i)
+    {
+        cout << "Nilai elemen ke-" << i << " : " << data[i] << endl;
+    }
+
+    cout << "Mengakses elemen array menggunakan pointer:" << endl;
+
+    for (int i = 0; i < 5; ++i)
+    {
+        cout << "Nilai elemen ke-" << i << " : " << *(p_data + i) << endl;
+    }
+
+    return 0;
+}
+```
+
+### string_pointer
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char pesan_array[] = "Nasi Padang";
+    char *pesan_pointer = "Ayam Bakar 23";
+
+    cout << "String Array: " << pesan_array << endl;
+    cout << "String Pointer: " << pesan_pointer << endl;
+
+    // Mengubah karakter dalam array diperbolehkan
+    pesan_array[0] = 'h';
+    cout << "String Array setelah diubah: " << pesan_array << endl;
+
+    // Pointer dapat diubah untuk menunjuk ke string lain
+    pesan_pointer = "Sariman";
+    cout << "String Pointer setelah menunjuk ke string lain: " << pesan_pointer << endl;
+
+    return 0;
+}
+```
+
+### call by pointer
+
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a = 10, b = 20;
+    cout << "Sebelum ditukar: a = " << a << ", b = " << b << endl;
+    tukar(&a, &b);
+    cout << "Setelah ditukar: a = " << a << ", b = " << b << endl;
+    return 0;
+}
+
+void tukar(int *px, int *py)
+{
+    int temp = *px;
+    *px = *py;
+    *py = temp;
+}
+```
+
+### call by reference
+
+```go
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a = 10, b = 20;
+    cout << "Sebelum ditukar: a = " << a << ", b = " << b << endl;
+    tukar(a, b);
+    cout << "Setelah ditukar: a = " << a << ", b = " << b << endl;
+    return 0;
+}
+
+void tukar(int &x, int &y)
+{
+    int temp = x;
+    x = y;
+    y = temp;
+}
+```
+
+## Unguided
+
+### Soal 1
+
+buatlah single linked list untuk Antrian yang menyimpan data pembeli( nama dan pesanan). program memiliki beberapa menu seperti tambah antrian,  layani antrian(hapus), dan tampilkan antrian. \*antrian pertama harus yang pertama dilayani
+
+
+```go
+#include <iostream>
+using namespace std;
+
+int main() {
+    int matriks[3][3], transpose[3][3];
+    
+    // Input matriks
+    cout << "Masukkan elemen matriks 3x3:\n";
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cin >> matriks[i][j];
+        }
+    }
+    
+    // Proses transpose
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            transpose[j][i] = matriks[i][j];
+        }
+    }
+    
+    // Tampilkan matriks awal
+    cout << "\nMatriks Awal:\n";
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << matriks[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    // Tampilkan hasil transpose
+    cout << "\nMatriks Transpose:\n";
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << transpose[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}
+```
+
+> Output
+> ![Screenshot bagian x](output/modul2no1.jpg)
+> 
+Program ini membuat transpose dari matriks 3x3. Transpose matriks adalah operasi menukar baris menjadi kolom (elemen baris ke-i menjadi kolom ke-i).
+
+### Soal 2
+
+buatlah program kode untuk membalik (reverse) singly linked list (1-2-3 menjadi 3-2-1) 
+
+Contoh Output:
+
+Nilai awal: 5
+Nilai setelah dikuadratkan: 25
+
+```go
+#include <iostream>
+using namespace std;
+
+//parameter
+void kuadrat(int &angka) {
+    angka = angka * angka;
+}
+
+int main() {
+    int nilai;
+    
+    cout << "Masukkan sebuah bilangan: ";
+    cin >> nilai;
+    
+    // Tampilkan nilai awal
+    cout << "Nilai awal: " << nilai << endl;
+    
+    // Panggil prosedur kuadrat
+    kuadrat(nilai);
+    
+    cout << "Nilai setelah dikuadratkan: " << nilai << endl;
+    
+    return 0;
+}
+```
+
+> Output
+> ![Screenshot bagian x](output/modul2no2.jpg)
+
+Penjelasan Kode:
+
+1. void = Prosedur ini tidak mengembalikan nilai (return). Dia hanya mengubah nilai parameter yang dikirim.
+2. int &angka = Parameter dengan tanda & (ampersand). Ini adalah KUNCI dari call by reference!
+    & membuat angka menjadi alias (nama lain) untuk variabel asli
+    Bukan salinan, tapi referensi langsung ke variabel asli
+3. angka = angka * angka = Mengkuadratkan nilai
+    Jika angka = 5, maka 5 × 5 = 25
+    Karena angka adalah reference, perubahan ini langsung mempengaruhi variabel asli di main()
+
+Program ini berfungsi untuk mengkuadratkan bilangan yang dimasukkan pengguna menggunakan parameter referensi sehingga nilai variabel langsung berubah.
+
+## Referensi
+
+1. https://www.w3schools.com/cpp/cpp_for_loop_nested.asp
+2. https://www.w3schools.com/cpp/cpp_arrays.asp
+3. https://www.w3schools.com/cpp/cpp_arrays_loop.asp
+4. https://www.w3schools.com/cpp/cpp_references.asp
+5. https://www.w3schools.com/cpp/cpp_pointers.asp
+6. https://www.w3schools.com/cpp/cpp_function_param.asp
+7. https://www.w3schools.com/cpp/cpp_function_array.asp
+
 
