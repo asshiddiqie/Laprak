@@ -3,7 +3,7 @@
 
 ## Dasar Teori
 
-Teori dasar C++ meliputi array untuk menyimpan kumpulan data, pointer yang menyimpan alamat memori variabel lain, serta fungsi dan prosedur untuk memodularisasi program. Dalam passing parameter, terdapat tiga cara: call by value (nilai disalin), call by pointer (melewatkan alamat memori via pointer), dan call by reference (parameter sebagai alias variabel asli), dimana call by pointer dan reference memungkinkan modifikasi variabel asli.
+Singly Linked List adalah struktur data dinamis yang terdiri dari node-node yang terhubung secara linear, di mana setiap node berisi data dan pointer yang menunjuk ke node berikutnya, membentuk rantai searah yang diakhiri NULL. Struktur ini memungkinkan penambahan dan penghapusan elemen secara efisien tanpa perlu pergeseran data, dengan operasi dasar meliputi penyisipan, penghapusan, penelusuran, dan pembaruan data yang diimplementasikan menggunakan pointer untuk mengelola hubungan antar elemen.
 
 ## Guided
 
