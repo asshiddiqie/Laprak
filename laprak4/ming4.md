@@ -257,25 +257,158 @@ Nilai setelah dikuadratkan: 25
 #include <iostream>
 using namespace std;
 
-//parameter
-void kuadrat(int &angka) {
-    angka = angka * angka;
+// Struktur node untuk linked list
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = nullptr;
+    }
+};
+
+class LinkedList {
+private:
+    Node* head;
+    
+public:
+    LinkedList() {
+        head = nullptr;
+    }
+    
+    // Fungsi untuk menambah node di akhir
+    void tambahNode(int data) {
+        Node* newNode = new Node(data);
+        
+        if (head == nullptr) {
+            head = newNode;
+            return;
+        }
+        
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    
+    // Fungsi untuk menampilkan linked list
+    void tampilkanList() {
+        Node* temp = head;
+        cout << "Linked List: ";
+        while (temp != nullptr) {
+            cout << temp->data;
+            if (temp->next != nullptr) {
+                cout << " -> ";
+            }
+            temp = temp->next;
+        }
+        cout << " -> NULL" << endl;
+    }
+    
+    // Fungsi untuk reverse linked list
+    void reverseIteratif() {
+        Node* prev = nullptr;
+        Node* current = head;
+        Node* next = nullptr;
+        
+        while (current != nullptr) {
+            next = current->next;  // Simpan node berikutnya
+            current->next = prev;  // Balik pointer
+            prev = current;        // Geser prev
+            current = next;        // Geser current
+        }
+        
+        head = prev; // prev sekarang menjadi head baru
+    }
+    
+    // Fungsi untuk reverse linked list (rekursif)
+    Node* reverseRekursif(Node* node) {
+        // Base case
+        if (node == nullptr || node->next == nullptr) {
+            return node;
+        }
+        
+        // Reverse sisa list
+        Node* rest = reverseRekursif(node->next);
+        
+        // Letakkan node pertama di akhir
+        node->next->next = node;
+        node->next = nullptr;
+        
+        return rest;
+    }
+    
+    void reverseRekursif() {
+        head = reverseRekursif(head);
+    }
+    
+    // Destructor untuk menghapus semua node
+    ~LinkedList() {
+        Node* current = head;
+        Node* next;
+        
+        while (current != nullptr) {
+            next = current->next;
+            delete current;
+            current = next;
+        }
+        head = nullptr;
+    }
+};
+
+// Menu untuk program reverse
+void menuReverse() {
+    LinkedList list;
+    int pilihan, data;
+    
+    do {
+        cout << "\n=== PROGRAM REVERSE LINKED LIST ===" << endl;
+        cout << "1. Tambah Data" << endl;
+        cout << "2. Tampilkan List" << endl;
+        cout << "3. Reverse (Iteratif)" << endl;
+        cout << "4. Reverse (Rekursif)" << endl;
+        cout << "5. Keluar" << endl;
+        cout << "Pilihan Anda: ";
+        cin >> pilihan;
+        
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan data (angka): ";
+                cin >> data;
+                list.tambahNode(data);
+                cout << "Data " << data << " ditambahkan!" << endl;
+                break;
+                
+            case 2:
+                list.tampilkanList();
+                break;
+                
+            case 3:
+                list.reverseIteratif();
+                cout << "List berhasil di-reverse (iteratif)!" << endl;
+                list.tampilkanList();
+                break;
+                
+            case 4:
+                list.reverseRekursif();
+                cout << "List berhasil di-reverse (rekursif)!" << endl;
+                list.tampilkanList();
+                break;
+                
+            case 5:
+                cout << "Program selesai." << endl;
+                break;
+                
+            default:
+                cout << "Pilihan tidak valid!" << endl;
+        }
+    } while (pilihan != 5);
 }
 
 int main() {
-    int nilai;
-    
-    cout << "Masukkan sebuah bilangan: ";
-    cin >> nilai;
-    
-    // Tampilkan nilai awal
-    cout << "Nilai awal: " << nilai << endl;
-    
-    // Panggil prosedur kuadrat
-    kuadrat(nilai);
-    
-    cout << "Nilai setelah dikuadratkan: " << nilai << endl;
-    
+    menuReverse();
     return 0;
 }
 ```
@@ -285,16 +418,7 @@ int main() {
 
 Penjelasan Kode:
 
-1. void = Prosedur ini tidak mengembalikan nilai (return). Dia hanya mengubah nilai parameter yang dikirim.
-2. int &angka = Parameter dengan tanda & (ampersand). Ini adalah KUNCI dari call by reference!
-    & membuat angka menjadi alias (nama lain) untuk variabel asli
-    Bukan salinan, tapi referensi langsung ke variabel asli
-3. angka = angka * angka = Mengkuadratkan nilai
-    Jika angka = 5, maka 5 × 5 = 25
-    Karena angka adalah reference, perubahan ini langsung mempengaruhi variabel asli di main()
-
-Program ini berfungsi untuk mengkuadratkan bilangan yang dimasukkan pengguna menggunakan parameter referensi sehingga nilai variabel langsung berubah.
-
+Program tersebut merupakan implementasi linked list dalam C++ yang terdiri dari struktur Node untuk menyimpan data integer dan pointer ke node berikutnya, serta kelas LinkedList yang menyediakan fungsi untuk menambah node di akhir list, menampilkan seluruh isi list, dan membalikkan urutan node menggunakan dua pendekatan yaitu reverse iteratif dengan tiga pointer yang melakukan traversal sambil membalik arah link setiap node, dan reverse rekursif yang menggunakan stack call recursive sampai node terakhir kemudian membalik pointer saat backtracking, dengan antarmuka menu interaktif yang memungkinkan pengguna untuk menambah data, menampilkan list, serta memilih metode reverse yang diinginkan, dilengkapi destructor untuk mencegah memory leak dengan menghapus semua node saat program berakhir.
 ## Referensi
 
 1. https://www.w3schools.com/cpp/cpp_for_loop_nested.asp
