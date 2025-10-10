@@ -248,11 +248,6 @@ Program ini membuat transpose dari matriks 3x3. Transpose matriks adalah operasi
 
 buatlah program kode untuk membalik (reverse) singly linked list (1-2-3 menjadi 3-2-1) 
 
-Contoh Output:
-
-Nilai awal: 5
-Nilai setelah dikuadratkan: 25
-
 ```go
 #include <iostream>
 using namespace std;
