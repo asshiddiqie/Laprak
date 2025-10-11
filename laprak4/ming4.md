@@ -197,44 +197,141 @@ buatlah single linked list untuk Antrian yang menyimpan data pembeli( nama dan p
 
 ```go
 #include <iostream>
+#include <string>
 using namespace std;
 
+// Struktur data untuk pembeli
+struct Pembeli {
+    string nama;
+    string pesanan;
+    Pembeli* next;
+};
+
+class AntrianPembeli {
+private:
+    Pembeli* front;
+    Pembeli* rear;
+    
+public:
+    // Constructor
+    AntrianPembeli() {
+        front = rear = nullptr;
+    }
+    
+    // Destructor - YANG SUDAH DIBENARKAN
+    ~AntrianPembeli() {
+        while (front != nullptr) {
+            Pembeli* temp = front;
+            front = front->next;
+            delete temp;
+        }
+        rear = nullptr;
+    }
+    
+    // Fungsi untuk menambah antrian
+    void tambahAntrian() {
+        Pembeli* pembeliBaru = new Pembeli;
+        
+        cout << "\n=== TAMBAH ANTRIAN ===" << endl;
+        cout << "Nama Pembeli: ";
+        cin.ignore();
+        getline(cin, pembeliBaru->nama);
+        cout << "Pesanan: ";
+        getline(cin, pembeliBaru->pesanan);
+        
+        pembeliBaru->next = nullptr;
+        
+        if (rear == nullptr) {
+            // Jika antrian kosong
+            front = rear = pembeliBaru;
+        } else {
+            // Tambah di belakang
+            rear->next = pembeliBaru;
+            rear = pembeliBaru;
+        }
+        
+        cout << "Pembeli " << pembeliBaru->nama << " telah ditambahkan ke antrian!" << endl;
+    }
+    
+    // Fungsi untuk melayani antrian (menghapus dari depan)
+    void layaniAntrian() {
+        if (front == nullptr) {
+            cout << "\nAntrian kosong! Tidak ada yang dilayani." << endl;
+            return;
+        }
+        
+        Pembeli* temp = front;
+        cout << "\n=== MELAYANI ANTRIAN ===" << endl;
+        cout << "Melayani: " << front->nama << endl;
+        cout << "Pesanan: " << front->pesanan << endl;
+        
+        front = front->next;
+        
+        if (front == nullptr) {
+            rear = nullptr; // Antrian menjadi kosong
+        }
+        
+        delete temp;
+        cout << "Antrian berhasil dilayani!" << endl;
+    }
+    
+    // Fungsi untuk menampilkan antrian
+    void tampilkanAntrian() {
+        if (front == nullptr) {
+            cout << "\nAntrian kosong!" << endl;
+            return;
+        }
+        
+        Pembeli* current = front;
+        int nomor = 1;
+        
+        cout << "\n=== DAFTAR ANTRIAN ===" << endl;
+        cout << "No.\tNama Pembeli\t\tPesanan" << endl;
+        cout << "----------------------------------------" << endl;
+        
+        while (current != nullptr) {
+            cout << nomor << ".\t" << current->nama << "\t\t" << current->pesanan << endl;
+            current = current->next;
+            nomor++;
+        }
+    }
+};
+
+// Menu utama
+void menu() {
+    AntrianPembeli antrian;
+    int pilihan;
+    
+    do {
+        cout << "\n=== SISTEM ANTRIAN PEMBELI ===" << endl;
+        cout << "1. Tambah Antrian" << endl;
+        cout << "2. Layani Antrian" << endl;
+        cout << "3. Tampilkan Antrian" << endl;
+        cout << "4. Keluar" << endl;
+        cout << "Pilihan Anda: ";
+        cin >> pilihan;
+        
+        switch (pilihan) {
+            case 1:
+                antrian.tambahAntrian();
+                break;
+            case 2:
+                antrian.layaniAntrian();
+                break;
+            case 3:
+                antrian.tampilkanAntrian();
+                break;
+            case 4:
+                cout << "\nTerima kasih! Program selesai." << endl;
+                break;
+            default:
+                cout << "\nPilihan tidak valid!" << endl;
+        }
+    } while (pilihan != 4);
+}
+
 int main() {
-    int matriks[3][3], transpose[3][3];
-    
-    // Input matriks
-    cout << "Masukkan elemen matriks 3x3:\n";
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cin >> matriks[i][j];
-        }
-    }
-    
-    // Proses transpose
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            transpose[j][i] = matriks[i][j];
-        }
-    }
-    
-    // Tampilkan matriks awal
-    cout << "\nMatriks Awal:\n";
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << matriks[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
-    // Tampilkan hasil transpose
-    cout << "\nMatriks Transpose:\n";
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << transpose[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
+    menu();
     return 0;
 }
 ```
