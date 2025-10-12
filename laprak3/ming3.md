@@ -236,7 +236,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal2.jpg)
+> ![Screenshot bagian x](output/modul3no2.jpg)
 
 File pelajaran.h: Header file yang berisi definisi struct pelajaran (dengan field namaPel dan kodePel) serta deklarasi fungsi create_pelajaran() dan tampil_pelajaran(), dilindungi header guard untuk mencegah multiple inclusion. File ini menjadi jembatan penghubung antara implementasi (pelajaran.cpp) dan program utama (main.cpp), dimana kedua file tersebut harus meng-include pelajaran.h untuk mengakses definisi struct dan fungsi yang tersedia.
 
