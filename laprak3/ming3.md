@@ -244,57 +244,70 @@ Buatlah program dengan ketentuan :
 - 2 buah array 2D integer berukuran 3x3 dan 2 buah pointer integer
 - fungsi/prosedur yang menampilkan isi sebuah array integer 2D
 - fungsi/prosedur yang akan menukarkan isi dari 2 array integer 2D pada posisi tertentu
+- fungsi/prosedur yang akan menukarkan isi dari variabel yang ditunjuk oleh 2 buah
+pointer
 
 ```go
 #include <iostream>
 using namespace std;
 
 // Fungsi untuk menampilkan isi array 2D
-void tampilkanArray(int arr[3][3], string namaArray) {
-    cout << "Array " << namaArray << ":" << endl;
+void tampilkanArray(int arr[3][3], string nama) {
+    cout << "Array " << nama << ":" << endl;
     for(int i = 0; i < 3; i++) {
-        cout << "| ";
         for(int j = 0; j < 3; j++) {
             cout << arr[i][j] << " ";
         }
-        cout << "|" << endl;
+        cout << endl;
     }
     cout << endl;
 }
 
-// Fungsi untuk menukar elemen pada posisi tertentu menggunakan pointer
-void tukarPosisi(int arr1[3][3], int arr2[3][3], int baris, int kolom) {
-    int *ptr1 = &arr1[baris][kolom];
-    int *ptr2 = &arr2[baris][kolom];
-    
-    cout << "Sebelum tukar: Array1[" << baris << "][" << kolom << "] = " << *ptr1;
-    cout << ", Array2[" << baris << "][" << kolom << "] = " << *ptr2 << endl;
-    
-    // Tukar nilai menggunakan pointer
-    int temp = *ptr1;
-    *ptr1 = *ptr2;
-    *ptr2 = temp;
-    
-    cout << "Setelah tukar: Array1[" << baris << "][" << kolom << "] = " << *ptr1;
-    cout << ", Array2[" << baris << "][" << kolom << "] = " << *ptr2 << endl;
+// Fungsi untuk menukar isi dua array 2D pada posisi tertentu
+void tukarPosisiArray(int arr1[3][3], int arr2[3][3], int baris, int kolom) {
+    if(baris >= 0 && baris < 3 && kolom >= 0 && kolom < 3) {
+        int temp = arr1[baris][kolom];
+        arr1[baris][kolom] = arr2[baris][kolom];
+        arr2[baris][kolom] = temp;
+        cout << "Berhasil menukar posisi [" << baris << "][" << kolom << "]" << endl;
+    } else {
+        cout << "Posisi tidak valid!" << endl;
+    }
 }
 
-void menu() {
-    // Array 2D 3x3
-    int array1[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    int array2[3][3] = {{10, 20, 30}, {40, 50, 60}, {70, 80, 90}};
+// Fungsi untuk menukar isi variabel yang ditunjuk oleh dua pointer
+void tukarPointer(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+    cout << "Berhasil menukar nilai pointer: " << *a << " dan " << *b << endl;
+}
+
+int main() {
+    // Deklarasi 2 array 2D berukuran 3x3
+    int array1[3][3] = {{1, 2, 3},
+                        {4, 5, 6},
+                        {7, 8, 9}};
+                        
+    int array2[3][3] = {{10, 20, 30},
+                        {40, 50, 60},
+                        {70, 80, 90}};
     
-    // Pointer integer
+    // Deklarasi 2 pointer integer
     int *ptr1, *ptr2;
+    int x = 100, y = 200;
+    ptr1 = &x;
+    ptr2 = &y;
     
-    int pilihan;
+    int pilihan, baris, kolom;
     
-    do {
-        cout << "\n=== MENU PROGRAM ARRAY 2D ===" << endl;
+    while(true) {
+        cout << "\n=== PROGRAM MANIPULASI ARRAY DAN POINTER ===" << endl;
         cout << "1. Tampilkan Array" << endl;
-        cout << "2. Tukar Posisi Tertentu" << endl;
-        cout << "3. Keluar" << endl;
-        cout << "Pilihan: ";
+        cout << "2. Tukar Posisi Array" << endl;
+        cout << "3. Tukar Nilai Pointer" << endl;
+        cout << "4. Keluar" << endl;
+        cout << "Pilih menu: ";
         cin >> pilihan;
         
         switch(pilihan) {
@@ -303,37 +316,30 @@ void menu() {
                 tampilkanArray(array2, "Kedua");
                 break;
                 
-            case 2: {
-                int baris, kolom;
-                cout << "Masukkan posisi untuk ditukar:" << endl;
+            case 2:
+                cout << "Masukkan posisi yang ingin ditukar:" << endl;
                 cout << "Baris (0-2): ";
                 cin >> baris;
                 cout << "Kolom (0-2): ";
                 cin >> kolom;
-                
-                if(baris >= 0 && baris < 3 && kolom >= 0 && kolom < 3) {
-                    tukarPosisi(array1, array2, baris, kolom);
-                    cout << "\nHasil setelah penukaran:" << endl;
-                    tampilkanArray(array1, "Pertama");
-                    tampilkanArray(array2, "Kedua");
-                } else {
-                    cout << "Posisi tidak valid!" << endl;
-                }
+                tukarPosisiArray(array1, array2, baris, kolom);
                 break;
-            }
                 
             case 3:
-                cout << "Program selesai." << endl;
+                cout << "Sebelum ditukar: *ptr1 = " << *ptr1 << ", *ptr2 = " << *ptr2 << endl;
+                tukarPointer(ptr1, ptr2);
+                cout << "Setelah ditukar: *ptr1 = " << *ptr1 << ", *ptr2 = " << *ptr2 << endl;
                 break;
+                
+            case 4:
+                cout << "Program selesai." << endl;
+                return 0;
                 
             default:
                 cout << "Pilihan tidak valid!" << endl;
         }
-    } while(pilihan != 3);
-}
-
-int main() {
-    menu();
+    }
+    
     return 0;
 }
 ```
@@ -341,16 +347,9 @@ int main() {
 > Output
 > ![Screenshot soal 3](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal3.jpg)
 
-Program ini membuat pola segitiga simetris dengan angka dan bintang. User memasukkan angka n, kemudian program menggambar segitiga setinggi n+1 baris.
-Cara kerja: Program menggunakan loop bertingkat untuk membuat setiap baris. Setiap baris terdiri dari 4 bagian:
+**Penjelasan Program (Ringkas):**
 
--Spasi untuk indentasi (membentuk segitiga)
-
--Angka kiri yang menurun (dari i ke 1)
-
--Bintang di tengah sebagai sumbu
-
--Angka kanan yang menaik (dari 1 ke i)
+Program ini mengimplementasikan manipulasi array 2D dan pointer dengan tiga fungsi utama: tampilkanArray() untuk menampilkan isi array 2D, tukarPosisiArray() untuk menukar nilai dua array pada posisi tertentu dengan validasi, dan tukarPointer() untuk menukar nilai yang ditunjuk dua pointer menggunakan variabel temporary. Program mendeklarasikan dua array 3x3 (array1: 1-9, array2: 10-90) dan dua pointer (ptr1→100, ptr2→200). Menu interaktif menggunakan loop dan switch-case menyediakan empat pilihan: tampilkan array, tukar posisi array berdasarkan input baris-kolom dari user, tukar nilai pointer dengan menampilkan nilai sebelum dan sesudah, serta keluar program. Semua fungsi menggunakan pass by reference sehingga perubahan bersifat permanen dan memberikan feedback ke user.
 
 ## Referensi
 
