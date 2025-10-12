@@ -160,7 +160,7 @@ int main() {
 > Output
 > ![Screenshot soal 1](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal1.png)
 
-Program di atas adalah kalkulator sederhana dalam C++ yang menerima dua input bilangan float dari pengguna dan menampilkan hasil empat operasi aritmetika dasar (penjumlahan, pengurangan, perkalian, dan pembagian) dengan implementasi pengecekan kondisi untuk mencegah pembagian oleh nol.
+Program C++ ini adalah sistem manajemen nilai mahasiswa yang menggunakan struct untuk menyimpan data seperti nama, NIM, dan nilai. Program menampilkan menu yang memungkinkan pengguna untuk menambah data (maksimal 10 mahasiswa), melihat data yang sudah dimasukkan, atau keluar. Setiap data baru akan otomatis menghitung nilai akhir dengan rumus 30% UTS, 40% UAS, dan 30% tugas. Semua data disimpan dalam array of struct dan program akan berjalan dalam loop hingga pengguna memilih untuk berhenti.
 
 ### Soal 2
 
