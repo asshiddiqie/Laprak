@@ -368,4 +368,5 @@ Program ini mengimplementasikan manipulasi array 2D dan pointer dengan tiga fung
 4. https://www.w3schools.com/cpp/cpp_conditions_else.asp
 5. https://www.w3schools.com/cpp/cpp_variables_multiple.asp
 6. https://www.w3schools.com/cpp/cpp_arrays.asp
+7. https://id.wikipedia.org/wiki/Tipe_data_abstrak
 
