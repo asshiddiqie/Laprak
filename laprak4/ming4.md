@@ -338,7 +338,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul2no1.jpg)
+> ![Screenshot bagian x](output/modul4no1.jpg)
 > 
 Program diatas mengimplementasikan linked list dalam C++ dengan dua metode reversal - iteratif menggunakan tiga pointer untuk membalik node secara sequential dalam loop, dan rekursif yang memanfaatkan stack call function untuk membalik dari node terakhir. Program menyediakan menu interaktif untuk menambah data, menampilkan list dalam format visual dengan tanda panah, serta memilih metode reversal yang diinginkan, dilengkapi destructor untuk mencegah memory leak dengan menghapus semua node secara otomatis.
 ### Soal 2
@@ -506,7 +506,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul2no2.jpg)
+> ![Screenshot bagian x](output/modul4no2.jpg)
 
 Penjelasan Kode:
 
