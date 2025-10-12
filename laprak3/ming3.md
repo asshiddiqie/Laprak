@@ -164,71 +164,73 @@ Program C++ ini adalah sistem manajemen nilai mahasiswa yang menggunakan struct 
 
 ### Soal 2
 
-Buatlah sebuah program yang menerima masukan angka dan mengeluarkan output nilai angka tersebut dalam bentuk tulisan. Angka yang akan di-input-kan user adalah bilangan bulat positif mulai dari 0 s.d 100
-
+Buatlah ADT pelajaran sebagai berikut di dalam file “pelajaran.h”:
 ```go
+goType pelajaran <
+namaMapel : string
+kodeMapel : string
+>
+function create_pelajaran( namapel : string,
+kodepel : string ) → pelajaran
+procedure tampil_pelajaran( input pel : pelajaran )
+```
+Buatlah implementasi ADT pelajaran pada file “pelajaran.cpp”
+
+Cobalah hasil implementasi ADT pada file “main.cpp”
+
+### file pelajaran.cpp
+```go
+#include "pelajaran.h"
 #include <iostream>
 using namespace std;
 
+// Implementasi function create_pelajaran
+Pelajaran create_pelajaran(string namaMapel, string kodeMapel) {
+    Pelajaran pel;
+    pel.namaMapel = namaMapel;
+    pel.kodeMapel = kodeMapel;
+    return pel;
+}
+
+// Implementasi procedure tampil_pelajaran
+void tampil_pelajaran(Pelajaran pel) {
+    cout << "nama pelajaran : " << pel.namaMapel << endl;
+    cout << "nilai : " << pel.kodeMapel << endl;
+}
+```
+### file pelajaran.h
+```go
+#ifndef PELAJARAN_H
+#define PELAJARAN_H
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Pelajaran {
+    string namaMapel;  // namawape1 -> namaMapel
+    string kodeMapel;  // kodewape1 -> kodeMapel
+};
+
+Pelajaran create_pelajaran(string namaMapel, string kodeMapel);
+
+void tampil_pelajaran(Pelajaran pel);
+
+#endif
+```
+### file main.cpp
+```go
+#include <iostream>
+#include "pelajaran.h"
+using namespace std;
+
 int main() {
-    int angka;
-    cout << "Masukkan angka (0-100): ";
-    cin >> angka;
+    string namapel = "Struktur Data";
+    string kodepel = "STD";  // kodepe1 -> kodepel
+
+    Pelajaran pel = create_pelajaran(namapel, kodepel);
+    tampil_pelajaran(pel);  // tampi1_pelajaran -> tampil_pelajaran
     
-    cout << angka << " : ";
-    
-    int p = angka / 10;  // puluhan
-    int s = angka % 10;  // satuan
-    
-    if (angka == 0) cout << "nol";
-    else if (angka == 100) cout << "seratus";
-    else if (angka == 10) cout << "sepuluh";
-    else if (angka == 11) cout << "sebelas";
-    else if (angka == 12) cout << "dua belas";
-    else if (angka == 13) cout << "tiga belas";
-    else if (angka == 14) cout << "empat belas";
-    else if (angka == 15) cout << "lima belas";
-    else if (angka == 16) cout << "enam belas";
-    else if (angka == 17) cout << "tujuh belas";
-    else if (angka == 18) cout << "delapan belas";
-    else if (angka == 19) cout << "sembilan belas";
-    else {
-        // Puluhan
-        if (p == 2) cout << "dua puluh";
-        else if (p == 3) cout << "tiga puluh";
-        else if (p == 4) cout << "empat puluh";
-        else if (p == 5) cout << "lima puluh";
-        else if (p == 6) cout << "enam puluh";
-        else if (p == 7) cout << "tujuh puluh";
-        else if (p == 8) cout << "delapan puluh";
-        else if (p == 9) cout << "sembilan puluh";
-        
-        // Satuan (kalau ada)
-        if (s == 1) cout << " satu";
-        else if (s == 2) cout << " dua";
-        else if (s == 3) cout << " tiga";
-        else if (s == 4) cout << " empat";
-        else if (s == 5) cout << " lima";
-        else if (s == 6) cout << " enam";
-        else if (s == 7) cout << " tujuh";
-        else if (s == 8) cout << " delapan";
-        else if (s == 9) cout << " sembilan";
-        
-        // Kalau cuma satuan (1-9)
-        if (p == 0) {
-            if (s == 1) cout << "satu";
-            else if (s == 2) cout << "dua";
-            else if (s == 3) cout << "tiga";
-            else if (s == 4) cout << "empat";
-            else if (s == 5) cout << "lima";
-            else if (s == 6) cout << "enam";
-            else if (s == 7) cout << "tujuh";
-            else if (s == 8) cout << "delapan";
-            else if (s == 9) cout << "sembilan";
-        }
-    }
-    
-    cout << endl;
     return 0;
 }
 ```
@@ -236,7 +238,14 @@ int main() {
 > Output
 > ![Screenshot bagian x](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal2.jpg)
 
-Program ini mengkonversi angka 0-100 menjadi kata dalam bahasa Indonesia dengan cara memisahkan digit puluhan dan satuan menggunakan operasi pembagian dan modulus, kemudian menggunakan struktur if-else bertingkat untuk menangani tiga kategori: kasus khusus (0, 10-19, 100) yang memiliki nama unik, angka puluhan (20-99) yang menggabungkan kata puluhan dan satuan, serta angka satuan (1-9) yang langsung mencetak kata satuannya.
+File pelajaran.h: Header file yang berisi definisi struct pelajaran (dengan field namaPel dan kodePel) serta deklarasi fungsi create_pelajaran() dan tampil_pelajaran(), dilindungi header guard untuk mencegah multiple inclusion. File ini menjadi jembatan penghubung antara implementasi (pelajaran.cpp) dan program utama (main.cpp), dimana kedua file tersebut harus meng-include pelajaran.h untuk mengakses definisi struct dan fungsi yang tersedia.
+
+File pelajaran.cpp: File implementasi yang meng-include pelajaran.h untuk mendapatkan deklarasi fungsi, kemudian memberikan body/isi dari fungsi create_pelajaran() yang membuat dan mengembalikan objek pelajaran, serta tampil_pelajaran() yang menampilkan data pelajaran. File ini bergantung pada pelajaran.h untuk mengetahui struktur data dan fungsi apa yang harus diimplementasikan, dan menyediakan fungsionalitas yang akan digunakan oleh main.cpp.
+
+File main.cpp: Program utama yang meng-include pelajaran.h untuk mengakses struct dan fungsi, lalu menggunakan fungsi-fungsi yang sudah diimplementasikan di pelajaran.cpp dengan membuat objek pelajaran melalui create_pelajaran() dan menampilkannya dengan tampil_pelajaran(). File ini tidak perlu tahu bagaimana fungsi-fungsi tersebut diimplementasikan (information hiding), cukup tahu cara menggunakannya dari deklarasi di header file.
+
+Hubungan Ketiganya: pelajaran.h sebagai interface → pelajaran.cpp sebagai implementasi → main.cpp sebagai user/client, sehingga ketika dikompilasi bersama (g++ main.cpp pelajaran.cpp -o program), compiler akan menggabungkan ketiganya menjadi satu program executable yang utuh, menerapkan prinsip modular programming dan encapsulation dalam ADT.
+
 
 ### Soal 3
 
