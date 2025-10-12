@@ -345,7 +345,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot soal 3](https://github.com/asshiddiqie/Laprak/blob/main/laprak1/soal3.jpg)
+> ![Screenshot soal 3](output/modul3no3.jpg)
 
 **Penjelasan Program (Ringkas):**
 
