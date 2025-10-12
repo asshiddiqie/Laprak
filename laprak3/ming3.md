@@ -356,8 +356,6 @@ int main() {
 > Output
 > ![Screenshot soal 3](output/modul3no3.jpg)
 
-**Penjelasan Program (Ringkas):**
-
 Program ini mengimplementasikan manipulasi array 2D dan pointer dengan tiga fungsi utama: tampilkanArray() untuk menampilkan isi array 2D, tukarPosisiArray() untuk menukar nilai dua array pada posisi tertentu dengan validasi, dan tukarPointer() untuk menukar nilai yang ditunjuk dua pointer menggunakan variabel temporary. Program mendeklarasikan dua array 3x3 (array1: 1-9, array2: 10-90) dan dua pointer (ptr1→100, ptr2→200). Menu interaktif menggunakan loop dan switch-case menyediakan empat pilihan: tampilkan array, tukar posisi array berdasarkan input baris-kolom dari user, tukar nilai pointer dengan menampilkan nilai sebelum dan sesudah, serta keluar program. Semua fungsi menggunakan pass by reference sehingga perubahan bersifat permanen dan memberikan feedback ke user.
 
 ## Referensi
