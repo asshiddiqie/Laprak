@@ -218,7 +218,7 @@ public:
         front = rear = nullptr;
     }
     
-    // Destructor - YANG SUDAH DIBENARKAN
+    // Destructor - SUDAH BENAR
     ~AntrianPembeli() {
         while (front != nullptr) {
             Pembeli* temp = front;
@@ -232,9 +232,8 @@ public:
     void tambahAntrian() {
         Pembeli* pembeliBaru = new Pembeli;
         
-        cout << "\n=== TAMBAH ANTRIAN ===" << endl;
+        cout << "\n---TAMBAH ANTRIAN---" << endl;
         cout << "Nama Pembeli: ";
-        cin.ignore();
         getline(cin, pembeliBaru->nama);
         cout << "Pesanan: ";
         getline(cin, pembeliBaru->pesanan);
@@ -261,7 +260,7 @@ public:
         }
         
         Pembeli* temp = front;
-        cout << "\n=== MELAYANI ANTRIAN ===" << endl;
+        cout << "\n---MELAYANI ANTRIAN---" << endl;
         cout << "Melayani: " << front->nama << endl;
         cout << "Pesanan: " << front->pesanan << endl;
         
@@ -285,9 +284,9 @@ public:
         Pembeli* current = front;
         int nomor = 1;
         
-        cout << "\n=== DAFTAR ANTRIAN ===" << endl;
-        cout << "No.\tNama Pembeli\t\tPesanan" << endl;
-        cout << "----------------------------------------" << endl;
+        cout << "\n---DAFTAR ANTRIAN---" << endl;
+        cout << "No.\tNama Pembeli\tPesanan" << endl;
+        cout << "-------------------------------" << endl;
         
         while (current != nullptr) {
             cout << nomor << ".\t" << current->nama << "\t\t" << current->pesanan << endl;
@@ -303,13 +302,15 @@ void menu() {
     int pilihan;
     
     do {
-        cout << "\n=== SISTEM ANTRIAN PEMBELI ===" << endl;
+        cout << "\n ---SISTEM ANTRIAN PEMBELI--- " << endl;
         cout << "1. Tambah Antrian" << endl;
         cout << "2. Layani Antrian" << endl;
         cout << "3. Tampilkan Antrian" << endl;
         cout << "4. Keluar" << endl;
         cout << "Pilihan Anda: ";
         cin >> pilihan;
+        
+        cin.ignore(); //Membersihkan newline character
         
         switch (pilihan) {
             case 1:
@@ -339,8 +340,7 @@ int main() {
 > Output
 > ![Screenshot bagian x](output/modul2no1.jpg)
 > 
-Program ini membuat transpose dari matriks 3x3. Transpose matriks adalah operasi menukar baris menjadi kolom (elemen baris ke-i menjadi kolom ke-i).
-
+Program diatas mengimplementasikan linked list dalam C++ dengan dua metode reversal - iteratif menggunakan tiga pointer untuk membalik node secara sequential dalam loop, dan rekursif yang memanfaatkan stack call function untuk membalik dari node terakhir. Program menyediakan menu interaktif untuk menambah data, menampilkan list dalam format visual dengan tanda panah, serta memilih metode reversal yang diinginkan, dilengkapi destructor untuk mencegah memory leak dengan menghapus semua node secara otomatis.
 ### Soal 2
 
 buatlah program kode untuk membalik (reverse) singly linked list (1-2-3 menjadi 3-2-1) 
