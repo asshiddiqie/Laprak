@@ -333,4 +333,6 @@ Program ini berfungsi untuk mengkuadratkan bilangan yang dimasukkan pengguna men
 5. https://www.w3schools.com/cpp/cpp_pointers.asp
 6. https://www.w3schools.com/cpp/cpp_function_param.asp
 7. https://www.w3schools.com/cpp/cpp_function_array.asp
+8. https://www.geeksforgeeks.org/dsa/linked-list-data-structure/
+9. https://en.wikipedia.org/wiki/Linked_list
 
