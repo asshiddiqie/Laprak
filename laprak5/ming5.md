@@ -1,10 +1,11 @@
 
-# <h1 align="center">Laporan Praktikum Modul 2 <br> PENGENALAN BAHASA C++ (BAGIAN KEDUA)</h1>
-<p align="center">ASSHIDDIQIE SYABANA PUTRA - 103112400129                                            </p>
+# <h1 align="center">Laporan Praktikum Modul 5 <br> SINGLY LINKED LIST (BAGIAN KEDUA)</h1>
+<p align="center">ASSHIDDIQIE SYABANA PUTRA - 103112400129</p>
 
 ## Dasar Teori
 
-Teori dasar C++ meliputi array untuk menyimpan kumpulan data, pointer yang menyimpan alamat memori variabel lain, serta fungsi dan prosedur untuk memodularisasi program. Dalam passing parameter, terdapat tiga cara: call by value (nilai disalin), call by pointer (melewatkan alamat memori via pointer), dan call by reference (parameter sebagai alias variabel asli), dimana call by pointer dan reference memungkinkan modifikasi variabel asli.
+Singly Linked List adalah struktur data dinamis yang terdiri dari rangkaian node, di mana setiap node menyimpan data dan pointer ke node berikutnya. Operasi dasarnya meliputi pencarian, penambahan, penghapusan, serta manipulasi seperti menyalin dan membalik list. Proses pencarian dilakukan dengan menelusuri tiap node hingga data ditemukan. Dalam C++, semua operasi ini diimplementasikan menggunakan ADT (Abstract Data Type) melalui file header (*.h) dan implementasi (*.cpp), sehingga pengelolaan memori menjadi lebih fleksibel dibandingkan array statis.
+
 
 ## Guided
 
