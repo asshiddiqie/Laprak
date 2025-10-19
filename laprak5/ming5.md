@@ -195,13 +195,8 @@ int main() {
 
 ### Soal 1
 
-Buatlah program yang menunjukkan penggunaan call by reference. Buat sebuah prosedur bernama kuadratkan yang menerima satu parameter integer secara referensi (&). Prosedur ini akan mengubah nilai asli variabel yang dilewatkan dengan nilai kuadratnya. Tampilkan nilai variabel di main() sebelum dan sesudah memanggil prosedur untuk membuktikan perubahannya. 
-
-Contoh Output:
-
-Nilai awal: 5
-Nilai setelah dikuadratkan: 25
-
+1. buatlah searcing untuk mencari nama pembeli pada unguided sebelumnya
+2. gunakan latihan pada pertemuan minggun ini dan tambahkan seardhing untuk mencari buku berdasarkan judul, penulis, dan ISBN
 ```go
 #include <iostream>
 using namespace std;
@@ -382,16 +377,8 @@ Penjelasan Kode:
 
 Berikut penjelasan per kode/per fungsi secara detail:
 
----
 
 **PENJELASAN PROGRAM PER KODE**
-
-```cpp
-#include <iostream>
-using namespace std;
-```
-Penjelasan: Baris ini mengimpor library iostream yang berisi fungsi input-output seperti cout dan cin. Using namespace std memungkinkan kita menulis cout tanpa harus menulis std::cout.
-
 ```cpp
 struct Buku {
     string isbn;
