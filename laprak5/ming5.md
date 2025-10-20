@@ -337,8 +337,7 @@ int main() {
 
 ### Soal 1
 
-1. buatlah searcing untuk mencari nama pembeli pada unguided sebelumnya
-2. gunakan latihan pada pertemuan minggun ini dan tambahkan seardhing untuk mencari buku berdasarkan judul, penulis, dan ISBN
+buatlah searcing untuk mencari nama pembeli pada unguided sebelumnya(modul 4 nomor 1)
 ```go
 #include <iostream>
 using namespace std;
@@ -519,8 +518,7 @@ Penjelasan Kode:
 
 ### Soal 2
 
-1. buatlah searcing untuk mencari nama pembeli pada unguided sebelumnya
-2. gunakan latihan pada pertemuan minggun ini dan tambahkan seardhing untuk mencari buku berdasarkan judul, penulis, dan ISBN
+gunakan latihan pada pertemuan minggun ini dan tambahkan searching untuk mencari buku berdasarkan judul, penulis, dan ISBN
 ```go
 #include <iostream>
 using namespace std;
