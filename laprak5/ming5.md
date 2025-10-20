@@ -9,6 +9,251 @@ Singly Linked List adalah struktur data dinamis yang terdiri dari rangkaian node
 
 ## Guided
 
+## searching
+```go
+#include <iostream>
+using namespace std;
+
+#define Nil nullptr
+
+// Deklarasi struktur Node
+struct Node {
+    int info;
+    Node* next;
+
+    Node(int value) {
+        info = value;
+        next = Nil;
+    }
+};
+
+// Kelas List
+class List {
+private:
+    Node* first;
+
+public:
+    // Konstruktor
+    List() {
+        first = Nil;
+    }
+
+    // Mengecek apakah list kosong
+    bool isEmpty() {
+        return first == Nil;
+    }
+
+    // Membuat list kosong
+    void createList() {
+        first = Nil;
+    }
+
+    // Menampilkan isi list
+    void printInfo() {
+        if (isEmpty()) {
+            cout << "List kosong" << endl;
+        } else {
+            Node* p = first;
+            cout << "Isi list: ";
+            while (p != Nil) {
+                cout << p->info << " ";
+                p = p->next;
+            }
+            cout << endl;
+        }
+    }
+
+    // Menghitung jumlah elemen
+    int nbList() {
+        int count = 0;
+        Node* p = first;
+        while (p != Nil) {
+            count++;
+            p = p->next;
+        }
+        return count;
+    }
+
+    // Menyisipkan elemen di awal
+    void insertFirst(int value) {
+        Node* p = new Node(value);
+        p->next = first;
+        first = p;
+    }
+
+    // Menyisipkan elemen di akhir
+    void insertLast(int value) {
+        Node* p = new Node(value);
+        if (isEmpty()) {
+            first = p;
+        } else {
+            Node* last = first;
+            while (last->next != Nil) {
+                last = last->next;
+            }
+            last->next = p;
+        }
+    }
+
+    // Menyisipkan elemen setelah node tertentu
+    void insertAfter(Node* prec, int value) {
+        if (prec != Nil) {
+            Node* p = new Node(value);
+            p->next = prec->next;
+            prec->next = p;
+        }
+    }
+
+    // Menghapus elemen pertama
+    void delFirst() {
+        if (!isEmpty()) {
+            Node* temp = first;
+            first = first->next;
+            delete temp;
+        }
+    }
+
+    // Menghapus elemen terakhir
+    void delLast() {
+        if (!isEmpty()) {
+            if (first->next == Nil) {
+                delete first;
+                first = Nil;
+            } else {
+                Node* prev = Nil;
+                Node* curr = first;
+                while (curr->next != Nil) {
+                    prev = curr;
+                    curr = curr->next;
+                }
+                prev->next = Nil;
+                delete curr;
+            }
+        }
+    }
+
+    // Menghapus elemen setelah node tertentu
+    void delAfter(Node* prec) {
+        if (prec != Nil && prec->next != Nil) {
+            Node* temp = prec->next;
+            prec->next = temp->next;
+            delete temp;
+        }
+    }
+
+    // Menghapus elemen dengan nilai tertentu
+    void delP(int value) {
+        if (isEmpty()) return;
+
+        Node* curr = first;
+        Node* prev = Nil;
+
+        while (curr != Nil && curr->info != value) {
+            prev = curr;
+            curr = curr->next;
+        }
+
+        if (curr != Nil) { // ditemukan
+            if (prev == Nil)
+                first = curr->next;
+            else
+                prev->next = curr->next;
+            delete curr;
+        }
+    }
+
+    // Mencari elemen dengan nilai tertentu
+    Node* findElm(int value) {
+        Node* p = first;
+        while (p != Nil) {
+            if (p->info == value)
+                return p;
+            p = p->next;
+        }
+        return Nil;
+    }
+
+    // Membalik urutan elemen list
+    void invertList() {
+        Node* prev = Nil;
+        Node* curr = first;
+        Node* next = Nil;
+
+        while (curr != Nil) {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        first = prev;
+    }
+
+    // Menghapus semua elemen list
+    void delAll() {
+        Node* p = first;
+        while (p != Nil) {
+            Node* temp = p;
+            p = p->next;
+            delete temp;
+        }
+        first = Nil;
+    }
+
+    // Menyalin isi list ke list lain
+    void copyList(List &L2) {
+        delAll();
+        Node* p = first;
+        while (p != Nil) {
+            L2.insertLast(p->info);
+            p = p->next;
+        }
+    }
+
+    // Destruktor
+    ~List() {
+        delAll();
+    }
+};
+
+// Contoh penggunaan dalam main
+int main() {
+    List L;
+
+    cout << "=== Program Linked List C++ ===" << endl;
+
+    L.insertFirst(10);
+    L.insertFirst(5);
+    L.insertLast(15);
+    L.insertLast(20);
+
+    L.printInfo(); // Output: 5 10 15 20
+    cout << "Jumlah elemen: " << L.nbList() << endl;
+
+    cout << "Hapus elemen pertama..." << endl;
+    L.delFirst();
+    L.printInfo();
+
+    cout << "Hapus elemen terakhir..." << endl;
+    L.delLast();
+    L.printInfo();
+
+    cout << "Cari elemen bernilai 10..." << endl;
+    Node* found = L.findElm(10);
+    if (found) cout << "Ditemukan: " << found->info << endl;
+    else cout << "Tidak ditemukan" << endl;
+
+    cout << "Balik urutan list..." << endl;
+    L.invertList();
+    L.printInfo();
+
+    cout << "Hapus semua elemen..." << endl;
+    L.delAll();
+    L.printInfo();
+
+    return 0;
+}
+```
+
 ### linklist
 ```cpp
 #include <iostream>
@@ -523,6 +768,78 @@ int main() {
 > ![Screenshot bagian x](output/modul5no1.jpg)
 
 Penjelasan Kode:
+1. Fungsi **CariPembeli()**
+```cpp
+void cariPembeli() {
+    if (front == nullptr) {
+        cout << "\nAntrian kosong! Tidak ada data untuk dicari." << endl;
+        return;
+    }
+    
+    string namaCari;
+    cout << "\n---CARI PEMBELI---" << endl;
+    cout << "Masukkan nama pembeli yang dicari: ";
+    getline(cin, namaCari);
+    
+    Pembeli* current = front;
+    int nomor = 1;
+    bool ditemukan = false;
+    
+    cout << "\n---HASIL PENCARIAN---" << endl;
+    
+    while (current != nullptr) {
+        if (toLower(current->nama).find(toLower(namaCari)) != string::npos) {
+            if (!ditemukan) {
+                cout << "No.\tNama Pembeli\tPesanan" << endl;
+                cout << "-------------------------------" << endl;
+                ditemukan = true;
+            }
+            cout << nomor << ".\t" << current->nama << "\t\t" << current->pesanan << endl;
+        }
+        current = current->next;
+        nomor++;
+    }
+    
+    if (!ditemukan) {
+        cout << "Pembeli dengan nama '" << namaCari << "' tidak ditemukan dalam antrian." << endl;
+    }
+}
+```
+
+Alur Pencarian:
+1. Pengecekan Antrian Kosong
+
+    Memeriksa apakah front == nullptr
+
+    Jika antrian kosong, langsung keluar dari fungsi
+
+2. Input Kata Kunci
+
+    Meminta pengguna memasukkan nama yang ingin dicari
+
+3. Traversal Linked List
+
+    Pointer current mulai dari front
+
+    Melakukan iterasi melalui seluruh node dalam linked list
+
+4. Pencarian Case-Insensitive
+
+    Menggunakan fungsi toLower() untuk mengubah kedua string (data dan pencarian) menjadi huruf kecil
+
+    Menggunakan string::find() untuk mencari substring
+
+5. Pencocokan Parsial
+
+    find() != string::npos berarti pencarian berhasil menemukan kecocokan
+
+    Pencarian bersifat partial match (cocok dengan bagian nama)
+
+6. Menampilkan Hasil
+
+    Jika ditemukan, menampilkan dalam format tabel
+
+    Jika tidak ditemukan, menampilkan pesan error
 
 ### Soal 2
 
@@ -704,6 +1021,100 @@ int main() {
 > ![Screenshot bagian x](output/modul5no2.jpg)
 
 Penjelasan Kode:
+# Penjelasan Kode Bagian Searching (Fungsi `cari()`)
+
+## 1. Validasi Data Awal
+```cpp
+if (head == nullptr) {
+    cout << "Daftar kosong!\n";
+    return;
+}
+```
+- **Tujuan**: Memastikan ada data yang bisa dicari
+- **Cara**: Mengecek apakah pointer `head` bernilai `nullptr`
+- **Hasil**: Jika kosong, program berhenti dan menampilkan pesan
+
+## 2. Input Kriteria Pencarian
+```cpp
+int pilihan;
+string kataKunci;
+bool ditemukan = false;
+
+cout << "\nCari berdasarkan:\n";
+cout << "1. ISBN\n";
+cout << "2. Judul\n";
+cout << "3. Penulis\n";
+cout << "Pilih: "; 
+cin >> pilihan;
+cin.ignore();
+
+cout << "Masukkan kata kunci: ";
+getline(cin, kataKunci);
+```
+- **Variabel**:
+  - `pilihan`: Menyimpan kriteria pencarian (1, 2, atau 3)
+  - `kataKunci`: Menyimpan teks yang akan dicari
+  - `ditemukan`: Flag boolean untuk menandai hasil pencarian
+- **Fungsi `cin.ignore()`**: Membersihkan newline character dari buffer input
+
+## 3. Inisialisasi Proses Pencarian
+```cpp
+cout << "\n=== HASIL PENCARIAN ===\n";
+Buku* temp = head;
+```
+- **Pointer `temp`**: Digunakan untuk menelusuri linked list, dimulai dari node pertama (`head`)
+
+## 4. Looping Traversal Linked List
+```cpp
+while (temp != nullptr) {
+    bool cocok = false;
+    // Logika pencocokan...
+    temp = temp->next;
+}
+```
+- **Mekanisme**: Loop melalui setiap node sampai mencapai akhir (`nullptr`)
+- **Iterasi**: `temp = temp->next` memindahkan pointer ke node berikutnya
+
+## 5. Logika Pencocokan Data
+```cpp
+if (pilihan == 1) {
+    if (temp->isbn == kataKunci) {
+        cocok = true;
+    }
+} else if (pilihan == 2) {
+    if (temp->judul.find(kataKunci) != string::npos) {
+        cocok = true;
+    }
+} else if (pilihan == 3) {
+    if (temp->penulis.find(kataKunci) != string::npos) {
+        cocok = true;
+    }
+}
+```
+- **ISBN**: Exact match menggunakan operator `==`
+- **Judul & Penulis**: Partial match menggunakan `string::find()`
+- **`string::npos`**: Nilai konstanta yang berarti "tidak ditemukan"
+
+## 6. Output Data yang Cocok
+```cpp
+if (cocok) {
+    cout << "\nISBN    : " << temp->isbn << endl;
+    cout << "Judul   : " << temp->judul << endl;
+    cout << "Penulis : " << temp->penulis << endl;
+    ditemukan = true;
+}
+```
+- **Tampilan**: Menampilkan detail buku yang memenuhi kriteria
+- **Update Flag**: Mengubah `ditemukan` menjadi `true`
+
+## 7. Final Check dan Pesan Error
+```cpp
+if (!ditemukan) {
+    cout << "\nTidak ditemukan!\n";
+}
+```
+- **Kondisi**: Jika tidak ada data yang cocok setelah traversal selesai
+- **Output**: Menampilkan pesan "Tidak ditemukan"
 
 ## Referensi
 
