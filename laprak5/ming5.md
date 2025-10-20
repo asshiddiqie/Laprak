@@ -375,6 +375,188 @@ int main() {
 
 Penjelasan Kode:
 
+### Soal 2
+
+1. buatlah searcing untuk mencari nama pembeli pada unguided sebelumnya
+2. gunakan latihan pada pertemuan minggun ini dan tambahkan seardhing untuk mencari buku berdasarkan judul, penulis, dan ISBN
+```go
+#include <iostream>
+using namespace std;
+
+struct Buku {
+    string isbn;
+    string judul;
+    string penulis;
+    Buku* next;
+};
+
+Buku* head = nullptr;
+
+void tambah() {
+    Buku* baru = new Buku();
+    cout << "ISBN: "; cin >> baru->isbn;
+    cout << "Judul: "; cin.ignore(); getline(cin, baru->judul);
+    cout << "Penulis: "; getline(cin, baru->penulis);
+    baru->next = nullptr;
+    
+    if (head == nullptr) {
+        head = baru;
+    } else {
+        Buku* temp = head;
+        while (temp->next != nullptr) temp = temp->next;
+        temp->next = baru;
+    }
+    cout << "Berhasil!\n";
+}
+
+void hapus() {
+    string isbn;
+    cout << "ISBN: "; cin >> isbn;
+    
+    if (head == nullptr) {
+        cout << "Kosong!\n";
+        return;
+    }
+    
+    if (head->isbn == isbn) {
+        Buku* temp = head;
+        head = head->next;
+        delete temp;
+        cout << "Dihapus!\n";
+        return;
+    }
+    
+    Buku* temp = head;
+    while (temp->next != nullptr && temp->next->isbn != isbn) {
+        temp = temp->next;
+    }
+    
+    if (temp->next != nullptr) {
+        Buku* hapus = temp->next;
+        temp->next = temp->next->next;
+        delete hapus;
+        cout << "Dihapus!\n";
+    } else {
+        cout << "Tidak ada!\n";
+    }
+}
+
+void perbarui() {
+    string isbn;
+    cout << "ISBN: "; cin >> isbn;
+    
+    Buku* temp = head;
+    while (temp != nullptr && temp->isbn != isbn) {
+        temp = temp->next;
+    }
+    
+    if (temp == nullptr) {
+        cout << "Tidak ada!\n";
+        return;
+    }
+    
+    cout << "Judul baru: "; cin.ignore(); getline(cin, temp->judul);
+    cout << "Penulis baru: "; getline(cin, temp->penulis);
+    cout << "Diperbarui!\n";
+}
+
+void lihat() {
+    if (head == nullptr) {
+        cout << "Kosong!\n";
+        return;
+    }
+    
+    Buku* temp = head;
+    while (temp != nullptr) {
+        cout << "\nISBN: " << temp->isbn;
+        cout << "\nJudul: " << temp->judul;
+        cout << "\nPenulis: " << temp->penulis << "\n";
+        temp = temp->next;
+    }
+}
+
+void cari() {
+    if (head == nullptr) {
+        cout << "Kosong!\n";
+        return;
+    }
+
+    int pilihan;
+    string kataKunci;
+    bool ditemukan = false;
+
+    cout << "\nCari berdasarkan:\n";
+    cout << "1. ISBN\n";
+    cout << "2. Judul\n";
+    cout << "3. Penulis\n";
+    cout << "Pilih: "; cin >> pilihan;
+    cin.ignore(); // Membersihkan newline dari buffer
+
+    cout << "Masukkan kata kunci: ";
+    getline(cin, kataKunci);
+
+    Buku* temp = head;
+    while (temp != nullptr) {
+        bool cocok = false;
+        switch (pilihan) {
+            case 1:
+                if (temp->isbn == kataKunci) cocok = true;
+                break;
+            case 2:
+                if (temp->judul.find(kataKunci) != string::npos) cocok = true;
+                break;
+            case 3:
+                if (temp->penulis.find(kataKunci) != string::npos) cocok = true;
+                break;
+            default:
+                cout << "Pilihan tidak valid!\n";
+                return;
+        }
+
+        if (cocok) {
+            cout << "\nISBN: " << temp->isbn;
+            cout << "\nJudul: " << temp->judul;
+            cout << "\nPenulis: " << temp->penulis << "\n";
+            ditemukan = true;
+        }
+        temp = temp->next;
+    }
+
+    if (!ditemukan) {
+        cout << "Tidak ditemukan!\n";
+    }
+}
+
+int main() {
+    int pilih;
+    
+    do {
+        cout << "\n=== MENU SINGLE LINKED LIST ===\n";
+        cout << "1. Tambah Buku" << endl;
+        cout << "2. Hapus Buku" << endl;
+        cout << "3. Perbarui Buku" << endl;
+        cout << "4. Lihat Buku" << endl;
+        cout << "5. Cari Buku" << endl;
+        cout << "6. Keluar" << endl;
+        cout << "Pilih: "; cin >> pilih;
+        
+        if (pilih == 1) tambah();
+        else if (pilih == 2) hapus();
+        else if (pilih == 3) perbarui();
+        else if (pilih == 4) lihat();
+        else if (pilih == 5) cari();
+        
+    } while (pilih != 6);
+    
+    return 0;
+}
+```
+
+> Output
+> ![Screenshot bagian x](output/modul2no2.jpg)
+
+Penjelasan Kode:
+
 Berikut penjelasan per kode/per fungsi secara detail:
 
 
