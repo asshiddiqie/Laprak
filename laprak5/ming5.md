@@ -520,7 +520,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul2no2.jpg)
+> ![Screenshot bagian x](output/modul5no1.jpg)
 
 Penjelasan Kode:
 
