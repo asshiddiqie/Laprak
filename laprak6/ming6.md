@@ -446,7 +446,7 @@ File program utama yang menggunakan fungsi-fungsi dari ADT. File ini:
 - Cukup menggunakan fungsi sesuai deklarasi di header
 
 **Hubungan Ketiganya:**
-`Doublylist.h` sebagai kontrak → `Doublylist.cpp` sebagai pelaksana → `main.cpp` sebagai pengguna. Ketika dikompilasi bersama (`g++ main.cpp Doublylist.cpp -o program`), ketiga file digabungkan menjadi satu program yang utuh, menerapkan prinsip pemrograman modular dalam ADT Doubly Linked List.
+`Doublylist.h` sebagai interface → `Doublylist.cpp` sebagai implementasi → `main.cpp` sebagai user/pengguna. Ketika dikompilasi bersama (`g++ main.cpp Doublylist.cpp -o program`), ketiga file digabungkan menjadi satu program yang utuh, menerapkan prinsip pemrograman modular dalam ADT Doubly Linked List.
 
 ## Referensi
 
