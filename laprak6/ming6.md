@@ -425,13 +425,28 @@ int main() {
 > Output
 > ![Screenshot bagian x](output/modul3no2.jpg)
 
-File pelajaran.h: Header file yang berisi definisi struct pelajaran (dengan field namaPel dan kodePel) serta deklarasi fungsi create_pelajaran() dan tampil_pelajaran(), dilindungi header guard untuk mencegah multiple inclusion. File ini menjadi jembatan penghubung antara implementasi (pelajaran.cpp) dan program utama (main.cpp), dimana kedua file tersebut harus meng-include pelajaran.h untuk mengakses definisi struct dan fungsi yang tersedia.
 
-File pelajaran.cpp: File implementasi yang meng-include pelajaran.h untuk mendapatkan deklarasi fungsi, kemudian memberikan body/isi dari fungsi create_pelajaran() yang membuat dan mengembalikan objek pelajaran, serta tampil_pelajaran() yang menampilkan data pelajaran. File ini bergantung pada pelajaran.h untuk mengetahui struktur data dan fungsi apa yang harus diimplementasikan, dan menyediakan fungsionalitas yang akan digunakan oleh main.cpp.
+Penjelasan 
+**File: Doublylist.h (File Header - Antarmuka)**
+File ini berisi definisi struktur data (`infotype`, `elmlist`, `List`) dan deklarasi fungsi-fungsi yang tersedia (`CreateList()`, `alokasi()`, `insertLast()`, dll). Dilengkapi dengan header guard untuk mencegah inklusi ganda. File ini berperan sebagai penghubung antara implementasi dan program utama - baik `Doublylist.cpp` maupun `main.cpp` perlu meng-include file ini untuk mengakses struktur data dan fungsi yang ada.
 
-File main.cpp: Program utama yang meng-include pelajaran.h untuk mengakses struct dan fungsi, lalu menggunakan fungsi-fungsi yang sudah diimplementasikan di pelajaran.cpp dengan membuat objek pelajaran melalui create_pelajaran() dan menampilkannya dengan tampil_pelajaran(). File ini tidak perlu tahu bagaimana fungsi-fungsi tersebut diimplementasikan (information hiding), cukup tahu cara menggunakannya dari deklarasi di header file.
+**File: Doublylist.cpp (File Implementasi)**
+File ini mengimplementasikan semua fungsi yang telah dideklarasikan di header. Setiap fungsi diberikan kode programnya di sini, seperti:
+- `CreateList()`: Membuat list kosong
+- `alokasi()`: Membuat elemen baru
+- `insertLast()`: Menambah data di akhir list
+- `findElm()`: Mencari data berdasarkan nomor polisi
+File ini bergantung pada `Doublylist.h` untuk mengetahui apa yang harus diimplementasikan.
 
-Hubungan Ketiganya: pelajaran.h sebagai interface → pelajaran.cpp sebagai implementasi → main.cpp sebagai user/client, sehingga ketika dikompilasi bersama (g++ main.cpp pelajaran.cpp -o program), compiler akan menggabungkan ketiganya menjadi satu program executable yang utuh, menerapkan prinsip modular programming dan encapsulation dalam ADT.
+**File: main.cpp (Program Utama)**
+File program utama yang menggunakan fungsi-fungsi dari ADT. File ini:
+- Meng-include `Doublylist.h` untuk mengetahui fungsi apa yang tersedia
+- Memanggil fungsi-fungsi seperti `CreateList()`, `alokasi()`, `insertLast()`
+- Tidak perlu tahu detail cara kerja fungsi-fungsi tersebut
+- Cukup menggunakan fungsi sesuai deklarasi di header
+
+**Hubungan Ketiganya:**
+`Doublylist.h` sebagai kontrak → `Doublylist.cpp` sebagai pelaksana → `main.cpp` sebagai pengguna. Ketika dikompilasi bersama (`g++ main.cpp Doublylist.cpp -o program`), ketiga file digabungkan menjadi satu program yang utuh, menerapkan prinsip pemrograman modular dalam ADT Doubly Linked List.
 
 ## Referensi
 
