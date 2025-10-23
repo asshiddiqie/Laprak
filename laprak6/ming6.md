@@ -261,72 +261,162 @@ int main() {
 
 ### Soal 1
 
-Buatlah ADT pelajaran sebagai berikut di dalam file “pelajaran.h”:
+Buatlah ADT Doubly Linked list sebagai berikut di dalam file “Doublylist.h”:
 ```go
-goType pelajaran <
-namaMapel : string
-kodeMapel : string
->
-function create_pelajaran( namapel : string,
-kodepel : string ) → pelajaran
-procedure tampil_pelajaran( input pel : pelajaran )
+Type infotype : kendaraan < 
+    nopol : string 
+    warna : string 
+    thnBuat : integer 
+> 
+Type address : pointer to ElmList 
+Type ElmList < 
+    info : infotype 
+    next :address 
+    prev : address 
+> 
+ 
+Type List < 
+    First : address 
+    Last : address 
+> 
+procedure CreateList( input/output L : List ) 
+function alokasi( x : infotype ) → address 
+procedure dealokasi(input/output P : address ) 
+procedure printInfo( input L : List ) 
+procedure insertLast(input/output L : List,  
+   input P : address ) 
 ```
-Buatlah implementasi ADT pelajaran pada file “pelajaran.cpp”
+Buatlah implementasi ADT Doubly Linked list pada file “Doublylist.cpp” dan coba hasil 
+implementasi ADT pada file “main.cpp”. 
 
-Cobalah hasil implementasi ADT pada file “main.cpp”
-
-### file pelajaran.cpp
+### file Doublylist.cpp
 ```go
-#include "pelajaran.h"
+#include "Doublylist.h"
 #include <iostream>
+
 using namespace std;
 
-// Implementasi function create_pelajaran
-Pelajaran create_pelajaran(string namaMapel, string kodeMapel) {
-    Pelajaran pel;
-    pel.namaMapel = namaMapel;
-    pel.kodeMapel = kodeMapel;
-    return pel;
+void createList(List &L) {
+    L.first = NULL;
+    L.last = NULL;
 }
 
-// Implementasi procedure tampil_pelajaran
-void tampil_pelajaran(Pelajaran pel) {
-    cout << "nama pelajaran : " << pel.namaMapel << endl;
-    cout << "nilai : " << pel.kodeMapel << endl;
+address alokasi(infotype x) {
+    address P = new elmlist;
+    P->info = x;
+    P->next = NULL;
+    P->prev = NULL;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = NULL;
+}
+
+void printInfo(List L) {
+    cout << "\nDATA LIST KENDARAAN\n";
+    cout << "===================\n";
+    
+    if (L.first == NULL) {
+        cout << "List kosong!\n";
+        return;
+    }
+    
+    address P = L.first;
+    while (P != NULL) {
+        cout << "No Polisi : " << P->info.nopol << endl;
+        cout << "Warna     : " << P->info.warna << endl;
+        cout << "Tahun     : " << P->info.thnBuat << endl;
+        cout << "-------------------\n";
+        P = P->next;
+    }
+}
+
+void insertLast(List &L, address P) {
+    if (L.first == NULL) {
+        // List kosong
+        L.first = P;
+        L.last = P;
+    } else {
+        // List tidak kosong
+        L.last->next = P;
+        P->prev = L.last;
+        L.last = P;
+    }
 }
 ```
-### file pelajaran.h
+### file Doublylist.h
 ```go
-#ifndef PELAJARAN_H
-#define PELAJARAN_H
-
-#include <iostream>
+#ifndef DOUBLYLIST_H
+#define DOUBLYLIST_H
 #include <string>
+
 using namespace std;
 
-struct Pelajaran {
-    string namaMapel;  // namawape1 -> namaMapel
-    string kodeMapel;  // kodewape1 -> kodeMapel
+struct infotype {
+    string nopol;
+    string warna;
+    int thnBuat;
 };
 
-Pelajaran create_pelajaran(string namaMapel, string kodeMapel);
+typedef struct elmlist *address;
 
-void tampil_pelajaran(Pelajaran pel);
+struct elmlist {
+    infotype info;
+    address next;
+    address prev;
+};
+
+struct List {
+    address first;
+    address last;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertLast(List &L, address P);
 
 #endif
 ```
 ### file main.cpp
 ```go
 #include <iostream>
-#include "pelajaran.h"
+#include "Doublylist.h"
+
 using namespace std;
 
 int main() {
-    string namapel = "Struktur Data";
-    string kodepel = "STD";  // kodepe1 -> kodepel
-
-    Pelajaran pel = create_pelajaran(namapel, kodepel);
-    tampil_pelajaran(pel);  // tampi1_pelajaran -> tampil_pelajaran
+    List L;
+    createList(L);
+    
+    char lanjut;
+    
+    cout << "=== PROGRAM INPUT KENDARAAN ===\n";
+    
+    do {
+        infotype kendaraan;
+        
+        cout << "\nMasukkan nomor polisi: ";
+        cin >> kendaraan.nopol;
+        cout << "Masukkan warna kendaraan: ";
+        cin >> kendaraan.warna;
+        cout << "Masukkan tahun kendaraan: ";
+        cin >> kendaraan.thnBuat;
+        
+        address P = alokasi(kendaraan);
+        insertLast(L, P);
+        
+        cout << "Data berhasil ditambahkan!\n";
+        cout << "Tambah data lagi? (y/n): ";
+        cin >> lanjut;
+        
+    } while (lanjut == 'y' || lanjut == 'Y');
+    
+    // Tampilkan semua data
+    printInfo(L);
     
     return 0;
 }
