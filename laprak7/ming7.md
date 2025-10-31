@@ -128,6 +128,449 @@ printInfo(S);
 return 0;
 }
 ```
+### file stack.h
+```cpp
+#ifndef STACK_H
+#define STACK_H
+
+const int MAX_SIZE = 20;
+
+typedef int infotype;
+
+struct Stack {
+    infotype info[MAX_SIZE];
+    int top;
+};
+
+void CreateStack(Stack &S);
+void Push(Stack &S, infotype x);
+infotype pop(Stack &S);
+void printInfo(Stack S);
+void balikStack(Stack &S);
+
+#endif
+```
+### file stack.cpp
+```cpp
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+void CreateStack(Stack &S) {
+    S.top = -1;
+}
+
+void Push(Stack &S, infotype x) {
+    if (S.top < MAX_SIZE - 1) {
+        S.top++;
+        S.info[S.top] = x;
+    } else {
+        cout << "Stack penuh!" << endl;
+    }
+}
+
+infotype pop(Stack &S) {
+    if (S.top >= 0) {
+        infotype x = S.info[S.top];
+        S.top--;
+        return x;
+    } else {
+        cout << "Stack kosong!" << endl;
+        return -1;
+    }
+}
+
+void printInfo(Stack S) {
+    if (S.top == -1) {
+        cout << "Stack kosong" << endl;
+        return;
+    }
+    
+    for (int i = S.top; i >= 0; i--) {
+        cout << S.info[i] << " ";
+    }
+    cout << endl;
+}
+
+void balikStack(Stack &S) {
+    Stack temp;
+    CreateStack(temp);
+    
+    // Pindahkan semua elemen ke stack temporary
+    while (S.top >= 0) {
+        Push(temp, pop(S));
+    }
+    
+    // Copy kembali ke stack asli (sudah terbalik)
+    S = temp;
+}
+```
+### file main.cpp
+```cpp
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+int main() {
+    cout << "Hello world!" << endl;
+    
+    Stack S;
+    CreateStack(S);
+    
+    Push(S, 3);
+    Push(S, 4);
+    Push(S, 8);
+    pop(S);
+    Push(S, 2);
+    Push(S, 3);
+    pop(S);
+    Push(S, 9);
+    
+    printInfo(S);
+    
+    cout << "balik stack" << endl;
+    balikStack(S);
+    printInfo(S);
+    
+    return 0;
+}
+```
+### Soal 2
+Tambahkan prosedur pushAscending( in/out S : Stack, in x : integer)
+```cpp
+int main()
+{
+cout << "Hello world!" << endl;
+Stack S;
+createStack(S);
+pushAscending(S,3);
+pushAscending(S,4);
+pushAscending(S,8);
+pushAscending(S,2);
+pushAscending(S,3);
+pushAscending(S,9);
+printInfo(S);
+cout<<"balik stack"<<endl;
+balikStack(S);
+printInfo(S);
+return 0;
+}
+```
+
+### file stack.h
+```cpp
+#ifndef STACK_H
+#define STACK_H
+
+const int MAX_SIZE = 20;
+
+typedef int infotype;
+
+struct Stack {
+    infotype info[MAX_SIZE];
+    int top;
+};
+
+void CreateStack(Stack &S);
+void push(Stack &S, infotype x);
+void pushAscending(Stack &S, infotype x);  // Tambahan
+infotype pop(Stack &S);
+void printInfo(Stack S);
+void balikStack(Stack &S);
+
+#endif
+```
+### file stack.cpp
+```cpp
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+void CreateStack(Stack &S) {
+    S.top = -1;
+}
+
+void push(Stack &S, infotype x) {
+    if (S.top < MAX_SIZE - 1) {
+        S.top++;
+        S.info[S.top] = x;
+    } else {
+        cout << "Stack penuh!" << endl;
+    }
+}
+
+void pushAscending(Stack &S, infotype x) {
+    if (S.top == -1) {
+        // Stack kosong, langsung push
+        push(S, x);
+        return;
+    }
+    
+    if (S.top >= MAX_SIZE - 1) {
+        cout << "Stack penuh!" << endl;
+        return;
+    }
+    
+    Stack temp;
+    CreateStack(temp);
+    
+    // Pindahkan elemen dari stack asli ke temp sampai menemukan posisi yang tepat
+    while (S.top >= 0 && S.info[S.top] < x) {
+        push(temp, pop(S));
+    }
+    
+    // Push elemen baru
+    push(S, x);
+    
+    // Kembalikan elemen dari temp ke stack asli
+    while (temp.top >= 0) {
+        push(S, pop(temp));
+    }
+}
+
+infotype pop(Stack &S) {
+    if (S.top >= 0) {
+        infotype x = S.info[S.top];
+        S.top--;
+        return x;
+    } else {
+        cout << "Stack kosong!" << endl;
+        return -1;
+    }
+}
+
+void printInfo(Stack S) {
+    if (S.top == -1) {
+        cout << "Stack kosong" << endl;
+        return;
+    }
+    
+    for (int i = S.top; i >= 0; i--) {
+        cout << S.info[i] << " ";
+    }
+    cout << endl;
+}
+
+void balikStack(Stack &S) {
+    Stack temp;
+    CreateStack(temp);
+    
+    // Pindahkan semua elemen ke stack temporary
+    int originalTop = S.top;
+    for (int i = 0; i <= originalTop; i++) {
+        push(temp, S.info[i]);
+    }
+    
+    // Clear stack asli
+    CreateStack(S);
+    
+    // Pindahkan kembali dari temp ke S (akan terbalik)
+    while (temp.top >= 0) {
+        push(S, pop(temp));
+    }
+}
+```
+### file main.cpp
+```cpp
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+int main() {
+    cout << "Hello world!" << endl;
+    
+    Stack S;
+    CreateStack(S);
+    
+    pushAscending(S, 3);
+    pushAscending(S, 4);
+    pushAscending(S, 8);
+    pushAscending(S, 2);
+    pushAscending(S, 3);
+    pushAscending(S, 9);
+    
+    printInfo(S);
+    
+    cout << "balik stack" << endl;
+    balikStack(S);
+    printInfo(S);
+    
+    return 0;
+}
+```
+
+### Soal 3
+Tambahkan prosedur getInputStream( in/out S : Stack ). Prosedur akan terus membaca dan
+menerima input user dan memasukkan setiap input ke dalam stack hingga user menekan
+tombol enter. Contoh: gunakan cin.get() untuk mendapatkan inputan user.
+### file stack.h
+```cpp
+#ifndef STACK_H
+#define STACK_H
+
+const int MAX_SIZE = 20;
+
+typedef int infotype;
+
+struct Stack {
+    infotype info[MAX_SIZE];
+    int top;
+};
+
+void CreateStack(Stack &S);
+void push(Stack &S, infotype x);
+void pushAscending(Stack &S, infotype x);
+void getInputStream(Stack &S);
+void processNumberInput(Stack &S);  // Tambahan untuk nomor 3
+infotype pop(Stack &S);
+void printInfo(Stack S);
+void balikStack(Stack &S);
+
+#endif
+```
+### file stack.cpp
+```cpp
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+void CreateStack(Stack &S) {
+    S.top = -1;
+}
+
+void push(Stack &S, infotype x) {
+    if (S.top < MAX_SIZE - 1) {
+        S.top++;
+        S.info[S.top] = x;
+    } else {
+        cout << "Stack penuh!" << endl;
+    }
+}
+
+void pushAscending(Stack &S, infotype x) {
+    if (S.top == -1) {
+        push(S, x);
+        return;
+    }
+    
+    if (S.top >= MAX_SIZE - 1) {
+        cout << "Stack penuh!" << endl;
+        return;
+    }
+    
+    Stack temp;
+    CreateStack(temp);
+    
+    while (S.top >= 0 && S.info[S.top] < x) {
+        push(temp, pop(S));
+    }
+    
+    push(S, x);
+    
+    while (temp.top >= 0) {
+        push(S, pop(temp));
+    }
+}
+
+void getInputStream(Stack &S) {
+    cout << "Masukkan karakter (tekan Enter untuk berhenti): ";
+    
+    char ch;
+    while (true) {
+        ch = cin.get();
+        
+        if (ch == '\n') {
+            break;
+        }
+        
+        if (S.top < MAX_SIZE - 1) {
+            push(S, (int)ch);
+        } else {
+            cout << "Stack penuh! Input dihentikan." << endl;
+            break;
+        }
+    }
+}
+
+void processNumberInput(Stack &S) {
+    cout << "Masukkan angka: ";
+    string input;
+    cin >> input;
+    
+    // Push setiap digit angka ke stack
+    for (int i = 0; i < input.length(); i++) {
+        if (isdigit(input[i])) {
+            int digit = input[i] - '0';  // Konversi char ke int
+            push(S, digit);
+        }
+    }
+}
+
+infotype pop(Stack &S) {
+    if (S.top >= 0) {
+        infotype x = S.info[S.top];
+        S.top--;
+        return x;
+    } else {
+        cout << "Stack kosong!" << endl;
+        return -1;
+    }
+}
+
+void printInfo(Stack S) {
+    if (S.top == -1) {
+        cout << "Stack kosong" << endl;
+        return;
+    }
+    
+    cout << "[TOP] ";
+    for (int i = S.top; i >= 0; i--) {
+        cout << S.info[i] << " ";
+    }
+    cout << endl;
+}
+
+void balikStack(Stack &S) {
+    Stack temp;
+    CreateStack(temp);
+    
+    // Pindahkan semua elemen ke stack temporary
+    int originalTop = S.top;
+    for (int i = 0; i <= originalTop; i++) {
+        push(temp, S.info[i]);
+    }
+    
+    // Clear stack asli
+    CreateStack(S);
+    
+    // Pindahkan kembali dari temp ke S (akan terbalik)
+    while (temp.top >= 0) {
+        push(S, pop(temp));
+    }
+}
+```
+### file main.cpp
+```cpp
+#include <iostream>
+#include "stack.h"
+using namespace std;
+
+int main() {
+    cout << "Hello world!" << endl;
+    
+    Stack S;
+    CreateStack(S);
+    
+    processNumberInput(S);
+    printInfo(S);
+    
+    cout << "balik stack" << endl;
+    balikStack(S);
+    printInfo(S);
+    
+    return 0;
+}
+```
 
 > Output
 > ![Screenshot bagian x](output/modul6no1.jpg)
