@@ -133,17 +133,16 @@ return 0;
 #ifndef STACK_H
 #define STACK_H
 
-const int MAX_SIZE = 20;
-
 typedef int infotype;
 
 struct Stack {
-    infotype info[MAX_SIZE];
+    infotype info[20];
     int top;
 };
 
+// Prototype functions
 void CreateStack(Stack &S);
-void Push(Stack &S, infotype x);
+void push(Stack &S, infotype x);
 infotype pop(Stack &S);
 void printInfo(Stack S);
 void balikStack(Stack &S);
@@ -157,23 +156,22 @@ void balikStack(Stack &S);
 using namespace std;
 
 void CreateStack(Stack &S) {
-    S.top = -1;
+    S.top = 0;
 }
 
-void Push(Stack &S, infotype x) {
-    if (S.top < MAX_SIZE - 1) {
-        S.top++;
+void push(Stack &S, infotype x) {
+    if (S.top < 20) {
         S.info[S.top] = x;
+        S.top++;
     } else {
         cout << "Stack penuh!" << endl;
     }
 }
 
 infotype pop(Stack &S) {
-    if (S.top >= 0) {
-        infotype x = S.info[S.top];
+    if (S.top > 0) {
         S.top--;
-        return x;
+        return S.info[S.top];
     } else {
         cout << "Stack kosong!" << endl;
         return -1;
@@ -181,12 +179,8 @@ infotype pop(Stack &S) {
 }
 
 void printInfo(Stack S) {
-    if (S.top == -1) {
-        cout << "Stack kosong" << endl;
-        return;
-    }
-    
-    for (int i = S.top; i >= 0; i--) {
+    cout << "[TOP] ";
+    for (int i = S.top - 1; i >= 0; i--) {
         cout << S.info[i] << " ";
     }
     cout << endl;
@@ -196,12 +190,11 @@ void balikStack(Stack &S) {
     Stack temp;
     CreateStack(temp);
     
-    // Pindahkan semua elemen ke stack temporary
-    while (S.top >= 0) {
-        Push(temp, pop(S));
+    int originalSize = S.top;
+    for (int i = 0; i < originalSize; i++) {
+        push(temp, pop(S));
     }
     
-    // Copy kembali ke stack asli (sudah terbalik)
     S = temp;
 }
 ```
@@ -211,27 +204,23 @@ void balikStack(Stack &S) {
 #include "stack.h"
 using namespace std;
 
-int main() {
+int main()
+{
     cout << "Hello world!" << endl;
-    
     Stack S;
     CreateStack(S);
-    
-    Push(S, 3);
-    Push(S, 4);
-    Push(S, 8);
+    push(S,3);
+    push(S,4);
+    push(S,8);
     pop(S);
-    Push(S, 2);
-    Push(S, 3);
+    push(S,2);
+    push(S,3);
     pop(S);
-    Push(S, 9);
-    
+    push(S,9);
     printInfo(S);
-    
     cout << "balik stack" << endl;
     balikStack(S);
     printInfo(S);
-    
     return 0;
 }
 ```
@@ -262,21 +251,20 @@ return 0;
 #ifndef STACK_H
 #define STACK_H
 
-const int MAX_SIZE = 20;
-
 typedef int infotype;
 
 struct Stack {
-    infotype info[MAX_SIZE];
+    infotype info[20];
     int top;
 };
 
+// Prototype functions
 void CreateStack(Stack &S);
 void push(Stack &S, infotype x);
-void pushAscending(Stack &S, infotype x);  // Tambahan
 infotype pop(Stack &S);
 void printInfo(Stack S);
 void balikStack(Stack &S);
+void pushAscending(Stack &S, infotype x);  // Ditambahkan
 
 #endif
 ```
@@ -287,52 +275,22 @@ void balikStack(Stack &S);
 using namespace std;
 
 void CreateStack(Stack &S) {
-    S.top = -1;
+    S.top = 0;
 }
 
 void push(Stack &S, infotype x) {
-    if (S.top < MAX_SIZE - 1) {
-        S.top++;
+    if (S.top < 20) {
         S.info[S.top] = x;
+        S.top++;
     } else {
         cout << "Stack penuh!" << endl;
     }
 }
 
-void pushAscending(Stack &S, infotype x) {
-    if (S.top == -1) {
-        // Stack kosong, langsung push
-        push(S, x);
-        return;
-    }
-    
-    if (S.top >= MAX_SIZE - 1) {
-        cout << "Stack penuh!" << endl;
-        return;
-    }
-    
-    Stack temp;
-    CreateStack(temp);
-    
-    // Pindahkan elemen dari stack asli ke temp sampai menemukan posisi yang tepat
-    while (S.top >= 0 && S.info[S.top] < x) {
-        push(temp, pop(S));
-    }
-    
-    // Push elemen baru
-    push(S, x);
-    
-    // Kembalikan elemen dari temp ke stack asli
-    while (temp.top >= 0) {
-        push(S, pop(temp));
-    }
-}
-
 infotype pop(Stack &S) {
-    if (S.top >= 0) {
-        infotype x = S.info[S.top];
+    if (S.top > 0) {
         S.top--;
-        return x;
+        return S.info[S.top];
     } else {
         cout << "Stack kosong!" << endl;
         return -1;
@@ -340,12 +298,8 @@ infotype pop(Stack &S) {
 }
 
 void printInfo(Stack S) {
-    if (S.top == -1) {
-        cout << "Stack kosong" << endl;
-        return;
-    }
-    
-    for (int i = S.top; i >= 0; i--) {
+    cout << "[TOP] ";
+    for (int i = S.top - 1; i >= 0; i--) {
         cout << S.info[i] << " ";
     }
     cout << endl;
@@ -355,17 +309,25 @@ void balikStack(Stack &S) {
     Stack temp;
     CreateStack(temp);
     
-    // Pindahkan semua elemen ke stack temporary
-    int originalTop = S.top;
-    for (int i = 0; i <= originalTop; i++) {
-        push(temp, S.info[i]);
+    int originalSize = S.top;
+    for (int i = 0; i < originalSize; i++) {
+        push(temp, pop(S));
     }
     
-    // Clear stack asli
-    CreateStack(S);
+    S = temp;
+}
+
+void pushAscending(Stack &S, infotype x) {
+    Stack temp;
+    CreateStack(temp);
     
-    // Pindahkan kembali dari temp ke S (akan terbalik)
-    while (temp.top >= 0) {
+    while (S.top > 0 && S.info[S.top - 1] < x) {
+        push(temp, pop(S));
+    }
+    
+    push(S, x);
+    
+    while (temp.top > 0) {
         push(S, pop(temp));
     }
 }
@@ -376,25 +338,21 @@ void balikStack(Stack &S) {
 #include "stack.h"
 using namespace std;
 
-int main() {
+int main()
+{
     cout << "Hello world!" << endl;
-    
     Stack S;
     CreateStack(S);
-    
-    pushAscending(S, 3);
-    pushAscending(S, 4);
-    pushAscending(S, 8);
-    pushAscending(S, 2);
-    pushAscending(S, 3);
-    pushAscending(S, 9);
-    
+    pushAscending(S,3);
+    pushAscending(S,4);
+    pushAscending(S,8);
+    pushAscending(S,2);
+    pushAscending(S,3);
+    pushAscending(S,9);
     printInfo(S);
-    
     cout << "balik stack" << endl;
     balikStack(S);
     printInfo(S);
-    
     return 0;
 }
 ```
