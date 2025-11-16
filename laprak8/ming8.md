@@ -124,139 +124,161 @@ int main() {
 
 ### Soal 1
 
-Buatlah ADT Stack menggunakan ARRAY sebagai berikut di dalam file “stack.h”:
+Buatlah ADT Stack menggunakan ARRAY sebagai berikut di dalam file “queue.h”:
 ```go
-Type infotype : integer
-Type Stack <
-info : array [20] of integer
-top : integer
+Type infotype: integer
+Type Queue: <
+info : array [5] of infotype {index array dalam C++
+dimulai dari 0}
+head, tail : integer
 >
-procedure CreateStack( input/output S : Stack )
-procedure push(input/output S : Stack,
-input x : infotype)
-function pop(input/output t S : Stack )
-→ infotype
-procedure printInfo( input S : Stack )
-procedure balikStack(input/output S :
-Stack )
+procedure CreateQueue (input/output Q: Queue)
+function isEmptyQueue (Q: Queue) → boolean
+function isFullQueue (Q: Queue) → boolean
+procedure enqueue (input/output Q: Queue, input x: infotype)
+function dequeue (input/output Q: Queue) → infotype
+procedure printInfo (input Q: Queue)
 ```
 
-Buatlah implementasi ADT Stack menggunakan Array pada file “stack.cpp” dan “main.cpp” 
+Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme queue Alternatif 1 (head diam, tail bergerak).
 ```go
-int main()
-{
-cout << "Hello world!" <<
-endl;
-Stack S;
-createStack(S);
-Push(S,3);
-Push(S,4);
-Push(S,8);
-pop(S)
-Push(S,2);
-Push(S,3);
-pop(S);
-Push(S,9);
-printInfo(S);
-cout<<"balik stack"<<endl;
-balikStack(S);
-printInfo(S);
+int main() {
+cout << "Hello World" << endl;
+Queue Q;
+createQueue(Q);
+cout<<"----------------------"<<endl;
+cout<<" H - T \t | Queue info"<<endl;
+cout<<"----------------------"<<endl;
+printInfo(Q);
+enqueue(Q,5); printInfo(Q);
+enqueue(Q,2); printInfo(Q);
+enqueue(Q,7); printInfo(Q);
+dequeue(Q); printInfo(Q);
+enqueue(Q,4); printInfo(Q);
+dequeue(Q); printInfo(Q);
+dequeue(Q); printInfo(Q);
 return 0;
 }
 ```
-### file stack.h
+### file queue.h
 ```cpp
-#ifndef STACK_H
-#define STACK_H
+#ifndef QUEUE_H
+#define QUEUE_H
 
 typedef int infotype;
+const int MAX = 5; // ukuran queue
 
-struct Stack {
-    infotype info[20];
-    int top;
+struct Queue {
+    infotype info[MAX];
+    int head;
+    int tail;
 };
 
-// Prototype functions
-void CreateStack(Stack &S);
-void push(Stack &S, infotype x);
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
+// Prototype fungsi
+void createQueue(Queue &Q);
+bool isEmptyQueue(Queue Q);
+bool isFullQueue(Queue Q);
+void enqueue(Queue &Q, infotype x);
+infotype dequeue(Queue &Q);
+void printInfo(Queue Q);
 
 #endif
 ```
-### file stack.cpp
+### file queue_alt1.cpp
 ```cpp
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
-void CreateStack(Stack &S) {
-    S.top = 0;
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top < 20) {
-        S.info[S.top] = x;
-        S.top++;
-    } else {
-        cout << "Stack penuh!" << endl;
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
+}
+
+bool isFullQueue(Queue Q) {
+    return (Q.tail == MAX - 1);
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (isFullQueue(Q)) {
+        cout << "Queue penuh! Tidak bisa menambahkan " << x << endl;
+        return;
     }
+    
+    if (isEmptyQueue(Q)) {
+        Q.head = 0;
+        Q.tail = 0;
+    } else {
+        Q.tail++;
+    }
+    Q.info[Q.tail] = x;
 }
 
-infotype pop(Stack &S) {
-    if (S.top > 0) {
-        S.top--;
-        return S.info[S.top];
-    } else {
-        cout << "Stack kosong!" << endl;
+infotype dequeue(Queue &Q) {
+    infotype x;
+    
+    if (isEmptyQueue(Q)) {
+        cout << "Queue kosong! Tidak bisa menghapus" << endl;
         return -1;
     }
+    
+    x = Q.info[Q.head];
+    
+    if (Q.head == Q.tail) {
+        // hanya ada 1 elemen
+        Q.head = -1;
+        Q.tail = -1;
+    } else {
+        // geser semua elemen ke kiri
+        for (int i = Q.head + 1; i <= Q.tail; i++) {
+            Q.info[i-1] = Q.info[i];
+        }
+        Q.tail--;
+    }
+    
+    return x;
 }
 
-void printInfo(Stack S) {
-    cout << "[TOP] ";
-    for (int i = S.top - 1; i >= 0; i--) {
-        cout << S.info[i] << " ";
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << " \t | ";
+    
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";
+        }
     }
     cout << endl;
-}
-
-void balikStack(Stack &S) {
-    Stack temp;
-    CreateStack(temp);
-    
-    int originalSize = S.top;
-    for (int i = 0; i < originalSize; i++) {
-        push(temp, pop(S));
-    }
-    
-    S = temp;
 }
 ```
 ### file main.cpp
 ```cpp
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
-int main()
-{
-    cout << "Hello world!" << endl;
-    Stack S;
-    CreateStack(S);
-    push(S,3);
-    push(S,4);
-    push(S,8);
-    pop(S);
-    push(S,2);
-    push(S,3);
-    pop(S);
-    push(S,9);
-    printInfo(S);
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+int main() {
+    cout << "Hello World" << endl;
+    Queue Q;
+    createQueue(Q);
+    cout << "-------------------" << endl;
+    cout << " H - T \t | Queue info" << endl;
+    cout << "-------------------" << endl;
+    printInfo(Q);
+    
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    enqueue(Q, 4); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    
     return 0;
 }
 ```
@@ -296,134 +318,123 @@ Sebelum dibalik: Elemen ditampilkan dari atas (TOP) ke bawah: 9 (paling atas), 2
 Setelah dibalik: Urutan elemen terbalik: 3 (sekarang paling atas), 4, 2, 9 (sekarang paling bawah)
 
 ### Soal 2
-Tambahkan prosedur pushAscending( in/out S : Stack, in x : integer)
-```cpp
-int main()
-{
-cout << "Hello world!" << endl;
-Stack S;
-createStack(S);
-pushAscending(S,3);
-pushAscending(S,4);
-pushAscending(S,8);
-pushAscending(S,2);
-pushAscending(S,3);
-pushAscending(S,9);
-printInfo(S);
-cout<<"balik stack"<<endl;
-balikStack(S);
-printInfo(S);
-return 0;
-}
-```
+Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme queue Alternatif 2 (head bergerak, tail bergerak).
 
-### file stack.h
+### file queue.h
 ```cpp
-#ifndef STACK_H
-#define STACK_H
+#ifndef QUEUE_H
+#define QUEUE_H
 
 typedef int infotype;
+const int MAX = 5; // ukuran queue
 
-struct Stack {
-    infotype info[20];
-    int top;
+struct Queue {
+    infotype info[MAX];
+    int head;
+    int tail;
 };
 
-// Prototype functions
-void CreateStack(Stack &S);
-void push(Stack &S, infotype x);
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
-void pushAscending(Stack &S, infotype x);  // Ditambahkan
+// Prototype fungsi
+void createQueue(Queue &Q);
+bool isEmptyQueue(Queue Q);
+bool isFullQueue(Queue Q);
+void enqueue(Queue &Q, infotype x);
+infotype dequeue(Queue &Q);
+void printInfo(Queue Q);
 
 #endif
 ```
-### file stack.cpp
+### file queue_alt2.cpp
 ```cpp
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
-void CreateStack(Stack &S) {
-    S.top = 0;
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top < 20) {
-        S.info[S.top] = x;
-        S.top++;
-    } else {
-        cout << "Stack penuh!" << endl;
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
+}
+
+bool isFullQueue(Queue Q) {
+    return (Q.tail == MAX - 1);
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (isFullQueue(Q)) {
+        cout << "Queue penuh! Tidak bisa menambahkan " << x << endl;
+        return;
     }
+    
+    if (isEmptyQueue(Q)) {
+        Q.head = 0;
+        Q.tail = 0;
+    } else {
+        Q.tail++;
+    }
+    Q.info[Q.tail] = x;
 }
 
-infotype pop(Stack &S) {
-    if (S.top > 0) {
-        S.top--;
-        return S.info[S.top];
-    } else {
-        cout << "Stack kosong!" << endl;
+infotype dequeue(Queue &Q) {
+    infotype x;
+    
+    if (isEmptyQueue(Q)) {
+        cout << "Queue kosong! Tidak bisa menghapus" << endl;
         return -1;
     }
+    
+    x = Q.info[Q.head];
+    
+    if (Q.head == Q.tail) {
+        // hanya ada 1 elemen
+        Q.head = -1;
+        Q.tail = -1;
+    } else {
+        Q.head++; // head bergerak maju
+    }
+    
+    return x;
 }
 
-void printInfo(Stack S) {
-    cout << "[TOP] ";
-    for (int i = S.top - 1; i >= 0; i--) {
-        cout << S.info[i] << " ";
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << " \t | ";
+    
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";
+        }
     }
     cout << endl;
-}
-
-void balikStack(Stack &S) {
-    Stack temp;
-    CreateStack(temp);
-    
-    int originalSize = S.top;
-    for (int i = 0; i < originalSize; i++) {
-        push(temp, pop(S));
-    }
-    
-    S = temp;
-}
-
-void pushAscending(Stack &S, infotype x) {
-    Stack temp;
-    CreateStack(temp);
-    
-    while (S.top > 0 && S.info[S.top - 1] < x) {
-        push(temp, pop(S));
-    }
-    
-    push(S, x);
-    
-    while (temp.top > 0) {
-        push(S, pop(temp));
-    }
 }
 ```
 ### file main.cpp
 ```cpp
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
-int main()
-{
-    cout << "Hello world!" << endl;
-    Stack S;
-    CreateStack(S);
-    pushAscending(S,3);
-    pushAscending(S,4);
-    pushAscending(S,8);
-    pushAscending(S,2);
-    pushAscending(S,3);
-    pushAscending(S,9);
-    printInfo(S);
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+int main() {
+    cout << "Hello World" << endl;
+    Queue Q;
+    createQueue(Q);
+    cout << "-------------------" << endl;
+    cout << " H - T \t | Queue info" << endl;
+    cout << "-------------------" << endl;
+    printInfo(Q);
+    
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    enqueue(Q, 4); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    
     return 0;
 }
 ```
@@ -461,173 +472,125 @@ Setelah dibalik: Stack terurut menaik dari atas: 2 (terkecil), 3, 3, 4, 8, 9 (te
 
 
 ### Soal 3
-Tambahkan prosedur getInputStream( in/out S : Stack ). Prosedur akan terus membaca dan
-menerima input user dan memasukkan setiap input ke dalam stack hingga user menekan
-tombol enter. Contoh: gunakan cin.get() untuk mendapatkan inputan user.
-### file stack.h
-```cpp
-#ifndef STACK_H
-#define STACK_H
+Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme queue Alternatif 3 (head dan tail berputar).
 
-const int MAX_SIZE = 20;
+### file queue.h
+```cpp
+#ifndef QUEUE_H
+#define QUEUE_H
 
 typedef int infotype;
+const int MAX = 5; // ukuran queue
 
-struct Stack {
-    infotype info[MAX_SIZE];
-    int top;
+struct Queue {
+    infotype info[MAX];
+    int head;
+    int tail;
 };
 
-void CreateStack(Stack &S);
-void push(Stack &S, infotype x);
-void pushAscending(Stack &S, infotype x);
-void getInputStream(Stack &S);
-void processNumberInput(Stack &S);  // Tambahan untuk nomor 3
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
+// Prototype fungsi
+void createQueue(Queue &Q);
+bool isEmptyQueue(Queue Q);
+bool isFullQueue(Queue Q);
+void enqueue(Queue &Q, infotype x);
+infotype dequeue(Queue &Q);
+void printInfo(Queue Q);
 
 #endif
 ```
-### file stack.cpp
+### file queue_alt3.cpp
 ```cpp
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
-void CreateStack(Stack &S) {
-    S.top = -1;
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top < MAX_SIZE - 1) {
-        S.top++;
-        S.info[S.top] = x;
-    } else {
-        cout << "Stack penuh!" << endl;
-    }
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
 }
 
-void pushAscending(Stack &S, infotype x) {
-    if (S.top == -1) {
-        push(S, x);
+bool isFullQueue(Queue Q) {
+    return ((Q.tail + 1) % MAX == Q.head);
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (isFullQueue(Q)) {
+        cout << "Queue penuh! Tidak bisa menambahkan " << x << endl;
         return;
     }
     
-    if (S.top >= MAX_SIZE - 1) {
-        cout << "Stack penuh!" << endl;
-        return;
-    }
-    
-    Stack temp;
-    CreateStack(temp);
-    
-    while (S.top >= 0 && S.info[S.top] < x) {
-        push(temp, pop(S));
-    }
-    
-    push(S, x);
-    
-    while (temp.top >= 0) {
-        push(S, pop(temp));
-    }
-}
-
-void getInputStream(Stack &S) {
-    cout << "Masukkan karakter (tekan Enter untuk berhenti): ";
-    
-    char ch;
-    while (true) {
-        ch = cin.get();
-        
-        if (ch == '\n') {
-            break;
-        }
-        
-        if (S.top < MAX_SIZE - 1) {
-            push(S, (int)ch);
-        } else {
-            cout << "Stack penuh! Input dihentikan." << endl;
-            break;
-        }
-    }
-}
-
-void processNumberInput(Stack &S) {
-    cout << "Masukkan angka: ";
-    string input;
-    cin >> input;
-    
-    // Push setiap digit angka ke stack
-    for (int i = 0; i < input.length(); i++) {
-        if (isdigit(input[i])) {
-            int digit = input[i] - '0';  // Konversi char ke int
-            push(S, digit);
-        }
-    }
-}
-
-infotype pop(Stack &S) {
-    if (S.top >= 0) {
-        infotype x = S.info[S.top];
-        S.top--;
-        return x;
+    if (isEmptyQueue(Q)) {
+        Q.head = 0;
+        Q.tail = 0;
     } else {
-        cout << "Stack kosong!" << endl;
+        Q.tail = (Q.tail + 1) % MAX;
+    }
+    Q.info[Q.tail] = x;
+}
+
+infotype dequeue(Queue &Q) {
+    infotype x;
+    
+    if (isEmptyQueue(Q)) {
+        cout << "Queue kosong! Tidak bisa menghapus" << endl;
         return -1;
     }
-}
-
-void printInfo(Stack S) {
-    if (S.top == -1) {
-        cout << "Stack kosong" << endl;
-        return;
+    
+    x = Q.info[Q.head];
+    
+    if (Q.head == Q.tail) {
+        // hanya ada 1 elemen
+        Q.head = -1;
+        Q.tail = -1;
+    } else {
+        Q.head = (Q.head + 1) % MAX;
     }
     
-    cout << "[TOP] ";
-    for (int i = S.top; i >= 0; i--) {
-        cout << S.info[i] << " ";
+    return x;
+}
+
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << " \t | ";
+    
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        int i = Q.head;
+        while (true) {
+            cout << Q.info[i] << " ";
+            if (i == Q.tail) break;
+            i = (i + 1) % MAX;
+        }
     }
     cout << endl;
-}
-
-void balikStack(Stack &S) {
-    Stack temp;
-    CreateStack(temp);
-    
-    // Pindahkan semua elemen ke stack temporary
-    int originalTop = S.top;
-    for (int i = 0; i <= originalTop; i++) {
-        push(temp, S.info[i]);
-    }
-    
-    // Clear stack asli
-    CreateStack(S);
-    
-    // Pindahkan kembali dari temp ke S (akan terbalik)
-    while (temp.top >= 0) {
-        push(S, pop(temp));
-    }
 }
 ```
 ### file main.cpp
 ```cpp
 #include <iostream>
-#include "stack.h"
+#include "queue.h"
 using namespace std;
 
 int main() {
-    cout << "Hello world!" << endl;
+    cout << "Hello World" << endl;
+    Queue Q;
+    createQueue(Q);
+    cout << "-------------------" << endl;
+    cout << " H - T \t | Queue info" << endl;
+    cout << "-------------------" << endl;
+    printInfo(Q);
     
-    Stack S;
-    CreateStack(S);
-    
-    processNumberInput(S);
-    printInfo(S);
-    
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    enqueue(Q, 4); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
     
     return 0;
 }
