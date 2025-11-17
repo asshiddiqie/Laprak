@@ -284,38 +284,10 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul7no1.jpg)
+> ![Screenshot bagian x](output/modul8no1.jpg)
 
 Penjelasan :
-```go
-CreateStack(S) - Membuat stack kosong
-
-push(S,3) - Menambahkan angka 3 → Stack: [3]
-
-push(S,4) - Menambahkan angka 4 → Stack: [3, 4]
-
-push(S,8) - Menambahkan angka 8 → Stack: [3, 4, 8]
-
-pop(S) - Mengambil angka 8 → Stack: [3, 4]
-
-push(S,2) - Menambahkan angka 2 → Stack: [3, 4, 2]
-
-push(S,3) - Menambahkan angka 3 → Stack: [3, 4, 2, 3]
-
-pop(S) - Mengambil angka 3 → Stack: [3, 4, 2]
-
-push(S,9) - Menambahkan angka 9 → Stack: [3, 4, 2, 9]
-
-printInfo(S) - Menampilkan stack dari atas ke bawah
-
-balikStack(S) - Membalik urutan elemen stack
-
-printInfo(S) - Menampilkan stack setelah dibalik
-```
-Penjelasan Output:
-Sebelum dibalik: Elemen ditampilkan dari atas (TOP) ke bawah: 9 (paling atas), 2, 4, 3 (paling bawah)
-
-Setelah dibalik: Urutan elemen terbalik: 3 (sekarang paling atas), 4, 2, 9 (sekarang paling bawah)
+Queue dengan pendekatan head diam dan tail bergerak merupakan implementasi paling sederhana dimana posisi head selalu tetap pada indeks awal array (biasanya indeks 0), sedangkan tail akan bergerak maju seiring penambahan elemen baru. Ketika terjadi proses penghapusan elemen dari head, semua elemen yang tersisa dalam antrian harus digeser ke posisi depan untuk mengisi kekosongan, mirip dengan antrian fisik dimana semua orang harus maju ketika orang depan keluar. Meskipun konsepnya mudah dipahami, implementasi ini kurang efisien karena membutuhkan banyak operasi pergeseran elemen, khususnya ketika ukuran queue besar, sehingga cocok untuk situasi dengan jumlah elemen sedikit dan frekuensi operasi yang rendah.
 
 ### Soal 2
 Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme queue Alternatif 2 (head bergerak, tail bergerak).
@@ -440,35 +412,10 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul7no2.jpg)
+> ![Screenshot bagian x](output/modul8no2.jpg)
 
 Penjelasan :
-Prosedur pushAscending memastikan elemen selalu tersimpan dalam stack secara terurut menurun dari atas ke bawah. Setiap elemen baru akan disisipkan pada posisi yang tepat sehingga urutan tetap terjaga.
-
-Algoritma Push Ascending:
-1. Buat stack temporary kosong
-2. Pindahkan elemen-elemen dari stack asli ke temporary selama elemen tersebut lebih kecil dari nilai yang akan dimasukkan
-3. Masukkan nilai baru ke stack asli
-4. Kembalikan semua elemen dari temporary ke stack asli
-
-Alur Eksekusi:
-```go
-pushAscending(S,3)  → Stack: [3]
-
-pushAscending(S,4)  → Stack: [4, 3]     (4 > 3, jadi 4 ditaruh di atas)
-
-pushAscending(S,8)  → Stack: [8, 4, 3]  (8 > 4, jadi 8 ditaruh di atas)
-
-pushAscending(S,2)  → Stack: [8, 4, 3, 2] (2 < 3, jadi 2 ditaruh di bawah)
-
-pushAscending(S,3)  → Stack: [8, 4, 3, 3, 2] (3 sama dengan 3, jadi ditaruh setelahnya)
-
-pushAscending(S,9)  → Stack: [9, 8, 4, 3, 3, 2] (9 > 8, jadi 9 ditaruh di paling atas)
-```
-Penjelasan Output:
-Sebelum dibalik: Stack terurut menurun dari atas: 9 (terbesar), 8, 4, 3, 3, 2 (terkecil)
-
-Setelah dibalik: Stack terurut menaik dari atas: 2 (terkecil), 3, 3, 4, 8, 9 (terbesar)
+Pada alternatif kedua, baik head maupun tail dapat bergerak maju dimana head bergerak ketika elemen dihapus dan tail bergerak ketika elemen ditambahkan. Pendekatan ini menghilangkan kebutuhan untuk menggeser elemen, sehingga lebih efisien daripada alternatif pertama karena setiap operasi hanya membutuhkan pergerakan pointer tanpa memindahkan data. Namun, implementasi ini dapat mengalami masalah "penuh semu" dimana tail sudah mencapai ujung array meskipun masih ada slot kosong di depan head, karena head telah bergerak maju meninggalkan ruang kosong di belakangnya. Sistem ini analog dengan antrian drive-thru dimana mobil tidak perlu bergerak maju ketika mobil depan telah dilayani.
 
 
 ### Soal 3
@@ -597,40 +544,11 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul7no3.jpg)
+> ![Screenshot bagian x](output/modul8no3.jpg)
 
 
-Penjelasan 
-Konsep Get Input Stream
-
-Prosedur getInputStream membaca input dari user karakter per karakter dan menyimpan setiap digit angka ke dalam stack. Proses berhenti ketika user menekan tombol Enter.
-
-Fitur Get Input Stream:
-1. Membaca input karakter per karakter menggunakan cin.get()
-2. Hanya menerima digit angka (0-9)
-3. Mengabaikan karakter lain seperti huruf atau spasi
-4. Berhenti membaca ketika mendeteksi newline character (\n)
-5. Setiap digit dikonversi dari char ke integer sebelum dimasukkan ke stack
-
-Contoh Eksekusi dengan Input "4729601":
-```
-Input: 4 7 2 9 6 0 1
-Proses Push:
-push(4) → Stack: [4]
-push(7) → Stack: [4, 7]
-push(2) → Stack: [4, 7, 2]
-push(9) → Stack: [4, 7, 2, 9]
-push(6) → Stack: [4, 7, 2, 9, 6]
-push(0) → Stack: [4, 7, 2, 9, 6, 0]
-push(1) → Stack: [4, 7, 2, 9, 6, 0, 1]
-```
-
-Penjelasan Output:
-1. Input asli: 4-7-2-9-6-0-1 (dibaca dari kiri ke kanan)
-2. Dalam stack: 4 (paling bawah), 7, 2, 9, 6, 0, 1 (paling atas)
-3. Tampilan normal: Dari atas ke bawah: 1, 0, 6, 9, 2, 7, 4
-4. Setelah dibalik: Urutan terbalik: 4, 7, 2, 9, 6, 0, 1
-
+Penjelasan :
+Alternatif ketiga menggunakan konsep circular buffer dimana array diperlakukan sebagai buffer melingkar dan kedua pointer head dan tail dapat "berputar" menggunakan operasi modulo. Ketika head atau tail mencapai akhir array, mereka akan kembali ke awal array, memastikan semua slot dapat dimanfaatkan secara optimal tanpa mengalami masalah "penuh semu". Implementasi ini memberikan efisiensi tertinggi dengan utilisasi memory yang maksimal dan performa operasi yang konsisten, meskipun logika implementasinya lebih kompleks dibandingkan kedua alternatif sebelumnya. Konsep ini mirip dengan meja bundar restoran dimana kursi dapat digunakan secara berurutan tanpa memperdulikan posisi awal dan akhir.
 
 ## Referensi
 
