@@ -347,11 +347,10 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul8no1.jpg)
+> ![Screenshot bagian x](output/modul10no1.jpg)
 
 Penjelasan :
-Queue dengan pendekatan head diam dan tail bergerak merupakan implementasi paling sederhana dimana posisi head selalu tetap pada indeks awal array (biasanya indeks 0), sedangkan tail akan bergerak maju seiring penambahan elemen baru. Ketika terjadi proses penghapusan elemen dari head, semua elemen yang tersisa dalam antrian harus digeser ke posisi depan untuk mengisi kekosongan, mirip dengan antrian fisik dimana semua orang harus maju ketika orang depan keluar. Meskipun konsepnya mudah dipahami, implementasi ini kurang efisien karena membutuhkan banyak operasi pergeseran elemen, khususnya ketika ukuran queue besar, sehingga cocok untuk situasi dengan jumlah elemen sedikit dan frekuensi operasi yang rendah.
-
+kode diatas bertujuan mengimplementasikan struktur data Binary Search Tree (BST) dengan operasi dasar menyisipkan node dan mencetak isi tree menggunakan traversal in-order. BST dibangun dengan aturan bahwa node kiri lebih kecil dan node kanan lebih besar dari parent, menghasilkan urutan terurut menaik saat traversal in-order. Contoh data {1, 2, 6, 4, 5, 3, 6, 7} membentuk BST dengan struktur tertentu dan output "1 - 2 - 3 - 4 - 5 - 6 - 7 -".
 ### Soal 2
 Buatlah fungsi untuk menghitung jumlah node dengan fungsi berikut.
 - fungsi hitungJumlahNode( root:address ) : integer
@@ -501,11 +500,10 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul8no2.jpg)
+> ![Screenshot bagian x](output/modul10no2.jpg)
 
 Penjelasan :
-Pada alternatif kedua, baik head maupun tail dapat bergerak maju dimana head bergerak ketika elemen dihapus dan tail bergerak ketika elemen ditambahkan. Pendekatan ini menghilangkan kebutuhan untuk menggeser elemen, sehingga lebih efisien daripada alternatif pertama karena setiap operasi hanya membutuhkan pergerakan pointer tanpa memindahkan data. Namun, implementasi ini dapat mengalami masalah "penuh semu" dimana tail sudah mencapai ujung array meskipun masih ada slot kosong di depan head, karena head telah bergerak maju meninggalkan ruang kosong di belakangnya. Sistem ini analog dengan antrian drive-thru dimana mobil tidak perlu bergerak maju ketika mobil depan telah dilayani.
-
+kode diatas menambahkan fungsi utilitas untuk menganalisis properti BST, yaitu menghitung jumlah node, total nilai semua node, dan kedalaman tree. Ketiga fungsi ini diimplementasikan secara rekursif, di mana perhitungan kedalaman menggunakan prinsip mencari jalur terpanjang dari root ke leaf. Untuk BST dari latihan 1, diperoleh hasil 7 node, total nilai 28, dan kedalaman 5.
 
 ### Soal 3
 Print tree secara pre-order dan post-order.
@@ -660,12 +658,11 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul8no3.jpg)
+> ![Screenshot bagian x](output/modul10no3.jpg)
 
 
 Penjelasan :
-Alternatif ketiga menggunakan konsep circular buffer dimana array diperlakukan sebagai buffer melingkar dan kedua pointer head dan tail dapat "berputar" menggunakan operasi modulo. Ketika head atau tail mencapai akhir array, mereka akan kembali ke awal array, memastikan semua slot dapat dimanfaatkan secara optimal tanpa mengalami masalah "penuh semu". Implementasi ini memberikan efisiensi tertinggi dengan utilisasi memory yang maksimal dan performa operasi yang konsisten, meskipun logika implementasinya lebih kompleks dibandingkan kedua alternatif sebelumnya. Konsep ini mirip dengan meja bundar restoran dimana kursi dapat digunakan secara berurutan tanpa memperdulikan posisi awal dan akhir.
-
+berfokus pada implementasi dan perbandingan tiga metode traversal tree: pre-order (Root→Kiri→Kanan), in-order (Kiri→Root→Kanan), dan post-order (Kiri→Kanan→Root). Masing-masing traversal menghasilkan urutan node yang berbeda, di mana pre-order berguna untuk menyalin struktur, in-order pada BST menghasilkan urutan terurut, dan post-order cocok untuk penghapusan tree. BST dari latihan sebelumnya menghasilkan output berbeda untuk setiap traversal.
 ## Referensi
 
 1. https://www.w3schools.com/cpp/cpp_for_loop_nested.asp
