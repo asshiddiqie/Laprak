@@ -801,7 +801,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul10no1.jpg)
+> ![Screenshot bagian x](output/soal1modul11.jpg)
 
 Penjelasan :
 kode diatas bertujuan mengimplementasikan struktur data Binary Search Tree (BST) dengan operasi dasar menyisipkan node dan mencetak isi tree menggunakan traversal in-order. BST dibangun dengan aturan bahwa node kiri lebih kecil dan node kanan lebih besar dari parent, menghasilkan urutan terurut menaik saat traversal in-order. Contoh data {1, 2, 6, 4, 5, 3, 6, 7} membentuk BST dengan struktur tertentu dan output "1 - 2 - 3 - 4 - 5 - 6 - 7 -".
@@ -1155,7 +1155,7 @@ int main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/modul10no2.jpg)
+> ![Screenshot bagian x](output/soal2modul11.jpg)
 
 Penjelasan :
 kode diatas menambahkan fungsi utilitas untuk menganalisis properti BST, yaitu menghitung jumlah node, total nilai semua node, dan kedalaman tree. Ketiga fungsi ini diimplementasikan secara rekursif, di mana perhitungan kedalaman menggunakan prinsip mencari jalur terpanjang dari root ke leaf. Untuk BST dari latihan 1, diperoleh hasil 7 node, total nilai 28, dan kedalaman 5.
