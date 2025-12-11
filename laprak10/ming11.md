@@ -804,9 +804,7 @@ int main() {
 > ![Screenshot bagian x](output/soal1modul11.jpg)
 
 Penjelasan :
-kode diatas bertujuan mengimplementasikan struktur data Binary Search Tree (BST) dengan operasi dasar menyisipkan node dan mencetak isi tree menggunakan traversal in-order. BST dibangun dengan aturan bahwa node kiri lebih kecil dan node kanan lebih besar dari parent, menghasilkan urutan terurut menaik saat traversal in-order. Contoh data {1, 2, 6, 4, 5, 3, 6, 7} membentuk BST dengan struktur tertentu dan output "1 - 2 - 3 - 4 - 5 - 6 - 7 -".
-
-### Soal 2
+mengimplementasikan Multi Linked List dengan struktur data hierarkis dua level menggunakan doubly linked list untuk induk dan anak, dimana setiap elemen induk (seperti pegawai) menyimpan pointer ke list anaknya sendiri sehingga operasi insert dan delete harus memperhatikan hubungan parent-child, termasuk penghapusan rekursif dimana menghapus induk akan menghapus semua anaknya, dengan fungsi-fungsi yang mencakup manajemen memori alokasi dan dealokasi untuk kedua level, pencarian elemen baik di induk maupun anak, serta operasi dasar linked list yang dimodifikasi untuk menjaga hubungan hierarkis antara list induk dan list anak dalam sistem yang terintegrasi.
 Buatlah ADT Multi Linked list sebagai berikut di dalam file “circularlist.h”:
 ```
 Type infotype : mahasiswa <
@@ -1158,8 +1156,7 @@ int main() {
 > ![Screenshot bagian x](output/soal2modul11.jpg)
 
 Penjelasan :
-kode diatas menambahkan fungsi utilitas untuk menganalisis properti BST, yaitu menghitung jumlah node, total nilai semua node, dan kedalaman tree. Ketiga fungsi ini diimplementasikan secara rekursif, di mana perhitungan kedalaman menggunakan prinsip mencari jalur terpanjang dari root ke leaf. Untuk BST dari latihan 1, diperoleh hasil 7 node, total nilai 28, dan kedalaman 5.
-
+Program ini mengimplementasikan Circular Linked List untuk menyimpan data mahasiswa dengan operasi dasar seperti insert first, insert last, insert after, delete, dan pencarian berdasarkan NIM. Struktur data bersifat melingkar dimana elemen terakhir menunjuk kembali ke elemen pertama, dengan fungsi printInfo yang menampilkan semua data dalam format yang sesuai contoh.
 
 1. https://www.w3schools.com/cpp/cpp_for_loop_nested.asp
 2. https://www.w3schools.com/cpp/cpp_arrays.asp
