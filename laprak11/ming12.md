@@ -476,7 +476,7 @@ int main() {
 > ![Screenshot bagian x](output/modul12no1.jpg)
 
 Penjelasan :
-mengimplementasikan Multi Linked List dengan struktur data hierarkis dua level menggunakan doubly linked list untuk induk dan anak, dimana setiap elemen induk (seperti pegawai) menyimpan pointer ke list anaknya sendiri sehingga operasi insert dan delete harus memperhatikan hubungan parent-child, termasuk penghapusan rekursif dimana menghapus induk akan menghapus semua anaknya, dengan fungsi-fungsi yang mencakup manajemen memori alokasi dan dealokasi untuk kedua level, pencarian elemen baik di induk maupun anak, serta operasi dasar linked list yang dimodifikasi untuk menjaga hubungan hierarkis antara list induk dan list anak dalam sistem yang terintegrasi.
+bertujuan untuk mengimplementasikan ADT Graph tidak berarah menggunakan struktur data multilist sesuai konsep dalam modul, di mana setiap node direpresentasikan dengan struktur ElmNode yang berisi informasi node dan pointer ke list edge, serta setiap edge direpresentasikan dengan struktur ElmEdge yang menunjuk ke node tetangga. Implementasi ini mencakup operasi dasar seperti CreateGraph untuk inisialisasi graph kosong, InsertNode untuk menambah node baru, ConnectNode untuk menghubungkan dua node secara dua arah (karena graph tidak berarah), dan PrintInfoGraph untuk menampilkan struktur graph lengkap beserta hubungan antar node, sehingga membentuk dasar struktur data graph yang dinamis menggunakan pointer.
 
 ## soal 2
 Buatlah prosedur untuk menampilkanhasil penelusuran DFS. 
@@ -710,7 +710,7 @@ int main() {
 > ![Screenshot bagian x](output/modul12no2.jpg)
 
 Penjelasan :
-Program ini mengimplementasikan Circular Linked List untuk menyimpan data mahasiswa dengan operasi dasar seperti insert first, insert last, insert after, delete, dan pencarian berdasarkan NIM. Struktur data bersifat melingkar dimana elemen terakhir menunjuk kembali ke elemen pertama, dengan fungsi printInfo yang menampilkan semua data dalam format yang sesuai contoh.
+mengimplementasikan algoritma Depth First Search (DFS) pada graph yang telah dibangun, menggunakan pendekatan rekursif untuk menjelajahi graph secara mendalam dengan mengunjungi satu cabang hingga tuntas sebelum berpindah ke cabang lain. Algoritma ini dimulai dari node awal yang ditandai sebagai visited, kemudian secara rekursif mengunjungi semua tetangga yang belum dikunjungi, menghasilkan urutan node yang mencerminkan penelusuran depth-first, dengan contoh hasil seperti A B D H E C F G ketika mulai dari node A, sesuai dengan konsep traversal dalam modul.
 
 ## soal 3
 Buatlah prosedur untuk menampilkanhasil penelusuran DFS. 
@@ -971,7 +971,7 @@ int main() {
 > ![Screenshot bagian x](output/modul12no3.jpg)
 
 Penjelasan :
-Program ini mengimplementasikan Circular Linked List untuk menyimpan data mahasiswa dengan operasi dasar seperti insert first, insert last, insert after, delete, dan pencarian berdasarkan NIM. Struktur data bersifat melingkar dimana elemen terakhir menunjuk kembali ke elemen pertama, dengan fungsi printInfo yang menampilkan semua data dalam format yang sesuai contoh.
+mengimplementasikan algoritma Breadth First Search (BFS) yang menggunakan struktur queue untuk menjelajahi graph secara melebar per level, di mana node awal dimasukkan ke queue kemudian dikunjungi dan semua tetangganya yang belum dikunjungi dimasukkan ke queue, menghasilkan urutan node seperti A B C D E F G H ketika mulai dari node A. Implementasi ini sesuai dengan pseudocode BFS dalam modul dan menggunakan array sebagai queue sederhana, menunjukkan perbedaan fundamental dengan DFS dalam strategi penelusuran graph.
 
 1. https://www.w3schools.com/cpp/cpp_for_loop_nested.asp
 2. https://www.w3schools.com/cpp/cpp_arrays.asp
